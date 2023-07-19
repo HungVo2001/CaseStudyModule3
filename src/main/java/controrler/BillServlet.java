@@ -1,0 +1,43 @@
+package controrler;
+
+import model.Bill;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.lang.reflect.Type;
+import java.util.List;
+
+@WebServlet(urlPatterns = "/checkout")
+public class BillServlet extends HttpServlet {
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+    }
+
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+//        int id = Integer.parseInt(req.getParameter("idUser"));
+//        String cartS = req.getParameter("cart");
+//        Gson gson = new Gson();
+//        Type cartItemListType = new TypeToken<List<Bill>>() {
+//        }.getType();
+//        List<Bill> cartItems = gson.fromJson(cartS, cartItemListType);
+//
+////        for (Cart item : cartItems) {
+////
+////        }
+//        billHomeDAO.saveBillToDb(id, cartItems);
+//        billHomeDAO.updateCartStatus(id);
+//
+//        resp.setContentType("application/json");
+//        resp.setCharacterEncoding("UTF-8");
+//        resp.getWriter().write("Checkout successful");
+
+    }
+}
