@@ -14,8 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "HomeServlet", urlPatterns = "/homes")
-public class HomeServlet extends HttpServlet {
+@WebServlet(name = "ShopServlet", urlPatterns = "/shop")
+public class ShopServlet extends HttpServlet {
     private IProductService productService;
 
     @Override
@@ -28,13 +28,8 @@ public class HomeServlet extends HttpServlet {
         List<Product> products = productService.findAll();
 
         req.setAttribute("products", products);
-        RequestDispatcher requestDispatcher = req.getRequestDispatcher(AppConfig.VIEW_FRONTEND + "index.jsp");
+        RequestDispatcher requestDispatcher = req.getRequestDispatcher(AppConfig.VIEW_FRONTEND + "shop.jsp");
         requestDispatcher.forward(req, resp);
 
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doPost(req, resp);
     }
 }

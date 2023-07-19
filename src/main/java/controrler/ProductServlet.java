@@ -1,5 +1,6 @@
 package controrler;
 
+import appconfig.AppConfig;
 import model.ESize;
 import model.Pageable;
 import model.Product;
@@ -69,7 +70,7 @@ public class ProductServlet extends HttpServlet {
         List<ProductType> productTypes = productTypeService.findAll();
         req.setAttribute("productTypes", productTypes);
         req.setAttribute("sizes", ESize.values());
-        RequestDispatcher requestDispatcher = req.getRequestDispatcher("/WEB-INF/dashboard/products/edit.jsp");
+        RequestDispatcher requestDispatcher = req.getRequestDispatcher(AppConfig.VIEW_DASHBOARD + "products/edit.jsp");
         requestDispatcher.forward(req, resp);
 
     }
@@ -88,7 +89,7 @@ public class ProductServlet extends HttpServlet {
         List<ProductType> productTypes = productTypeService.findAll();
         req.setAttribute("productTypes", productTypes);
 
-        RequestDispatcher requestDispatcher = req.getRequestDispatcher("/WEB-INF/dashboard/products/list.jsp");
+        RequestDispatcher requestDispatcher = req.getRequestDispatcher(AppConfig.VIEW_DASHBOARD + "products/list.jsp");
         requestDispatcher.forward(req, resp);
     }
 
@@ -124,7 +125,7 @@ public class ProductServlet extends HttpServlet {
 
         req.setAttribute("productTypes", productTypes);
         req.setAttribute("sizes", ESize.values());
-        RequestDispatcher requestDispatcher = req.getRequestDispatcher("/WEB-INF/dashboard/products/create.jsp");
+        RequestDispatcher requestDispatcher = req.getRequestDispatcher(AppConfig.VIEW_DASHBOARD +  "products/create.jsp");
         requestDispatcher.forward(req, resp);
     }
 
@@ -204,7 +205,7 @@ public class ProductServlet extends HttpServlet {
             req.setAttribute("productTypes", productTypes);
             ESize[] sizes = ESize.values();
             req.setAttribute("sizes", sizes);
-            RequestDispatcher requestDispatcher = req.getRequestDispatcher("/WEB-INF/dashboard/products/edit.jsp");
+            RequestDispatcher requestDispatcher = req.getRequestDispatcher(AppConfig.VIEW_DASHBOARD +  "products/edit.jsp");
             requestDispatcher.forward(req, resp);
 
         }
@@ -272,7 +273,7 @@ public class ProductServlet extends HttpServlet {
         }
 
 //            req.setAttribute("message", "Thêm thành công");
-            RequestDispatcher requestDispatcher = req.getRequestDispatcher("/products/create.jsp");
+            RequestDispatcher requestDispatcher = req.getRequestDispatcher( "/products/create.jsp");
             requestDispatcher.forward(req, resp);
 
     }
