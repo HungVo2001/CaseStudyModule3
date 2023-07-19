@@ -1,70 +1,79 @@
 package model;
 
+import java.time.LocalDate;
+import java.util.List;
+
 public class Cart {
-    private float cost;
-    private int id;
-    private String img;
-    private String name;
-    private double price;
-    private  int quantity;
+    private long id;
+    private LocalDate createAt;
+    List<CartItem> cartItems;
 
-    public Cart() {
+    private double total;
+
+    private Long idUser;
+
+    public Long getIdUser() {
+        return idUser;
     }
 
-    public Cart(float cost, int id, String img, String name, double price, int quantity) {
-        this.cost = cost;
+    public void setIdUser(Long idUser) {
+        this.idUser = idUser;
+    }
+
+    public Cart(long id, LocalDate createAt, double total, Long idUser) {
         this.id = id;
-        this.img = img;
-        this.name = name;
-        this.price = price;
-        this.quantity = quantity;
+        this.createAt = createAt;
+        this.total = total;
+        this.idUser = idUser;
+    }
+    public Cart(LocalDate createAt, double total, Long idUser) {
+        this.createAt = createAt;
+        this.total = total;
+        this.idUser = idUser;
     }
 
-    public float getCost() {
-        return cost;
+    public Cart(long id, LocalDate createAt, List<CartItem> cartItems, double total) {
+        this.id = id;
+        this.createAt = createAt;
+        this.cartItems = cartItems;
+        this.total = total;
     }
 
-    public void setCost(float cost) {
-        this.cost = cost;
+    public Cart(long id, LocalDate createAt, double total) {
+        this.id = id;
+        this.createAt = createAt;
+        this.total = total;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
-    public String getImg() {
-        return img;
+    public LocalDate getCreateAt() {
+        return createAt;
     }
 
-    public void setImg(String img) {
-        this.img = img;
+    public void setCreateAt(LocalDate createAt) {
+        this.createAt = createAt;
     }
 
-    public String getName() {
-        return name;
+    public List<CartItem> getCartItems() {
+        return cartItems;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setCartItems(List<CartItem> cartItems) {
+        this.cartItems = cartItems;
     }
 
-    public double getPrice() {
-        return price;
+    public double getTotal() {
+        return total;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
+    public void setTotal(double total) {
+        this.total = total;
     }
 }

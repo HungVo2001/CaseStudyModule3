@@ -1,7 +1,11 @@
 package controrler;
 
 import appconfig.AppConfig;
+import model.Cart;
 import model.Product;
+import model.User;
+import service.CartService;
+import service.ICartService;
 import service.IProductService;
 import service.ProductServiceMysql;
 
@@ -16,20 +20,71 @@ import java.util.List;
 
 @WebServlet(name = "CartServlet", urlPatterns = "/cart")
 public class CartServlet extends HttpServlet {
-    private IProductService productService;
+    private ICartService iCartService;
 
     @Override
     public void init() throws ServletException {
-        productService = new ProductServiceMysql();
+        iCartService = new CartService();
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<Product> products = productService.findAll();
+        String action = req.getParameter("action");
+        if (action == null) {
+            action = "";
+        }
+        switch (action) {
+            case "add":
+                addToCartView(req, resp);
+                break;
+            case "update":
+                updateCartView(req, resp);
+                break;
+            default:
+                showCartView(req, resp);
+        }
+    }
+    private void updateCartView(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
+        User user = (User) req.getSession().getAttribute("user");
+        if (user == null) {
+            resp.sendRedirect("/login");
+            return;
+        }
 
-        req.setAttribute("products", products);
-        RequestDispatcher requestDispatcher = req.getRequestDispatcher(AppConfig.VIEW_FRONTEND + "cart.jsp");
-        requestDispatcher.forward(req, resp);
+        long idProduct = Long.parseLong(req.getParameter("id"));
+        int quantity = Integer.parseInt(req.getParameter("quantity"));
 
+
+        Cart cart = iCartService.updateCartInfo(user.getId(), idProduct, quantity);
+        req.setAttribute("cart", cart);
+        req.getRequestDispatcher(AppConfig.VIEW_FRONTEND + "cart.jsp").forward(req, resp);
+    }
+
+    private void showCartView(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
+        User user = (User) req.getSession().getAttribute("user");
+        if (user == null) {
+            resp.sendRedirect("/login");
+            return;
+        }
+
+        Cart cart = iCartService.getCartById(user.getId());
+        req.setAttribute("cart", cart);
+        req.getRequestDispatcher(AppConfig.VIEW_FRONTEND + "cart.jsp").forward(req, resp);
+    }
+
+    private void addToCartView(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        int idProduct = Integer.parseInt(req.getParameter("id"));
+        int quantity = 1;
+
+        User user = (User) req.getSession().getAttribute("user");
+        if (user == null) {
+            resp.sendRedirect("/login");
+            return;
+        }
+        iCartService.addToCart(idProduct, quantity, user.getId());
+
+        Cart cart = iCartService.getCartById(user.getId());
+        req.setAttribute("cart", cart);
+        req.getRequestDispatcher(AppConfig.VIEW_FRONTEND + "cart.jsp").forward(req, resp);
     }
 }
