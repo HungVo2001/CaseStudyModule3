@@ -1,55 +1,70 @@
 package model;
 
-import java.time.LocalDate;
-import java.util.List;
-
 public class Cart {
-    private long id;
-    private LocalDate createAt;
-    List<CartItem> cartItems;
-
-    private double total;
-
+    private float cost;
+    private int id;
+    private String img;
+    private String name;
+    private double price;
+    private  int quantity;
 
     public Cart() {
     }
 
-    public Cart(long id, LocalDate createAt, List<CartItem> cartItems, double total) {
+    public Cart(float cost, int id, String img, String name, double price, int quantity) {
+        this.cost = cost;
         this.id = id;
-        this.createAt = createAt;
-        this.cartItems = cartItems;
-        this.total = total;
+        this.img = img;
+        this.name = name;
+        this.price = price;
+        this.quantity = quantity;
     }
 
-    public double getTotal() {
-        return total;
+    public float getCost() {
+        return cost;
     }
 
-    public void setTotal(double total) {
-        this.total = total;
+    public void setCost(float cost) {
+        this.cost = cost;
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public LocalDate getCreateAt() {
-        return createAt;
+    public String getImg() {
+        return img;
     }
 
-    public void setCreateAt(LocalDate createAt) {
-        this.createAt = createAt;
+    public void setImg(String img) {
+        this.img = img;
     }
 
-    public List<CartItem> getCartItems() {
-        return cartItems;
+    public String getName() {
+        return name;
     }
 
-    public void setCartItems(List<CartItem> cartItems) {
-        this.cartItems = cartItems;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 }
