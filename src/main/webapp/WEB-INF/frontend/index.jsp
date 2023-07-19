@@ -12,9 +12,6 @@
   <jsp:include page="/WEB-INF/layout/head_css.jsp"></jsp:include>
 
 
-
-
-
 </head>
 <body>
 
@@ -45,7 +42,6 @@
         </div>
       </div>
     </div>
-  </div>
   </div>
 
   <div class="section trending">

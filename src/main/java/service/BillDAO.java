@@ -8,10 +8,13 @@ import java.text.NumberFormat;
 import java.util.List;
 
 public class BillDAO extends DbContext{
-    private static final String INSERT_BILL = "";
-    private static final String UPDATE_CART_STATUS = "";
-    private static final String SAVE_BILL_INFO = "";
-    private static final String SELECT_BILL_JUST_CREATE = "";
+    private static final String INSERT_BILL = "INSERT INTO `bill` (`user_id`, `date`, `total`, `is_cart`) VALUES (?, ?, ?, ?);";
+
+    private static final String SAVE_BILL_INFO= "INSERT INTO `bill` (`user_id`, `date`, `total`, `is_bill`) VALUES (?, ?, ?, ?)";
+
+    private static final String SELECT_BILL_JUST_CREATE = "SELECT id FROM bill ORDER BY id desc";
+
+    private final String UPDATE_CART_STATUS = "UPDATE `bill` SET `is_cart` = ? WHERE (`id` = ?)";
 
     public void saveBillToDb(int idUser, List<Bill> bills) {
         try {

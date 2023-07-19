@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <title>Lugx Gaming - Product Detail</title>
-    <jsp:include page="/layout/head_css.jsp"></jsp:include>
+    <jsp:include page="/WEB-INF/layout/head_css.jsp"></jsp:include>
 
 
   </head>
@@ -20,7 +20,7 @@
   <!-- ***** Preloader End ***** -->
 
   <!-- ***** Header Area Start ***** -->
-  <jsp:include page="/layout/header_js.jsp"></jsp:include>
+  <jsp:include page="/WEB-INF/layout/header_js.jsp"></jsp:include>
   <!-- ***** Header Area End ***** -->
 
   <div class="page-heading header-text">
@@ -164,9 +164,9 @@
 
   <div class="separator wide"></div>
 
-  <jsp:include page="/layout/footer_container.jsp"></jsp:include>
+  <jsp:include page="/WEB-INF/layout/footer_container.jsp"></jsp:include>
 
-  <jsp:include page="/layout/java_script.jsp"></jsp:include>
+  <jsp:include page="/WEB-INF/layout/java_script.jsp"></jsp:include>
 
   </body>
 </html>

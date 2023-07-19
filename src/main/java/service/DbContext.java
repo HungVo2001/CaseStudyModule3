@@ -7,7 +7,7 @@ import java.sql.SQLException;
 public class DbContext {
     protected String jdbcURL = "jdbc:mysql://localhost:3306/product_manager?useSSL=false";
     protected String jdbcUsername = "root";
-    protected String jdbcPassword = "123456";
+    protected String jdbcPassword = "Nqb.151104";
 
     public void printSQLException(SQLException ex) {
         for (Throwable e : ex) {
