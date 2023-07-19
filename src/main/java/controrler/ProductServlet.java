@@ -1,7 +1,11 @@
 package controrler;
 
+
 import com.google.protobuf.Message;
 import com.mysql.cj.Session;
+
+import appconfig.AppConfig;
+
 import model.ESize;
 import model.Pageable;
 import model.Product;
@@ -17,9 +21,6 @@ import service.ProductServiceMysql;
 import service.ProductTypeServiceMysql;
 import untils.ValidatesUntils;
 
-import javax.mail.MessagingException;
-import javax.mail.Transport;
-import javax.mail.internet.InternetAddress;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -91,8 +92,13 @@ public class ProductServlet extends HttpServlet {
 
         List<ProductType> productTypes = productTypeService.findAll();
         req.setAttribute("productTypes", productTypes);
+
 //        req.setAttribute("sizes", ESize.values());
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("/WEB-INF/dashboard/products/edit.jsp");
+
+        req.setAttribute("sizes", ESize.values());
+//        RequestDispatcher requestDispatcher = req.getRequestDispatcher(AppConfig.VIEW_DASHBOARD + "products/edit.jsp");
+
         requestDispatcher.forward(req, resp);
 
     }
@@ -111,7 +117,7 @@ public class ProductServlet extends HttpServlet {
         List<ProductType> productTypes = productTypeService.findAll();
         req.setAttribute("productTypes", productTypes);
 
-        RequestDispatcher requestDispatcher = req.getRequestDispatcher("/WEB-INF/dashboard/products/list.jsp");
+        RequestDispatcher requestDispatcher = req.getRequestDispatcher(AppConfig.VIEW_DASHBOARD + "products/list.jsp");
         requestDispatcher.forward(req, resp);
     }
 
@@ -148,6 +154,8 @@ public class ProductServlet extends HttpServlet {
         req.setAttribute("productTypes", productTypes);
 //        req.setAttribute("sizes", ESize.values());
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("/WEB-INF/dashboard/products/create.jsp");
+        req.setAttribute("sizes", ESize.values());
+
         requestDispatcher.forward(req, resp);
     }
 
@@ -218,6 +226,7 @@ public class ProductServlet extends HttpServlet {
 //            ESize[] sizes = ESize.values();
 //            req.setAttribute("sizes", sizes);
             RequestDispatcher requestDispatcher = req.getRequestDispatcher("/WEB-INF/dashboard/products/edit.jsp");
+
             requestDispatcher.forward(req, resp);
 
         }

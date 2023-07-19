@@ -43,6 +43,21 @@ public class User {
         this.img = img;
     }
 
+    public User(int idDB, String usernameDB, String passwordDB, String email, String fullname, String phone, String address) {
+        this.id = idDB;
+        this.username = usernameDB;
+        this.password = passwordDB;
+        this.email = email;
+        this.fullname = fullname;
+        this.phone = phone;
+        this.address = address;
+    }
+
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
     public int getId() {
         return id;
     }
@@ -91,6 +106,7 @@ public class User {
         this.phone = phone;
     }
 
+
     public Role getRole() {
         return role;
     }
@@ -99,13 +115,6 @@ public class User {
         this.role = role;
     }
 
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
 
     public String getImg() {
         return img;
@@ -113,5 +122,13 @@ public class User {
 
     public void setImg(String img) {
         this.img = img;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 }

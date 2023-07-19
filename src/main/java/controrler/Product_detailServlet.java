@@ -1,5 +1,6 @@
 package controrler;
 
+
 import appconfig.AppConfig;
 import model.Product;
 import service.IProductService;
@@ -14,8 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "HomeServlet", urlPatterns = "/homes")
-public class HomeServlet extends HttpServlet {
+@WebServlet(name = "Product_detailServlet", urlPatterns = "/product")
+public class Product_detailServlet extends HttpServlet {
     private IProductService productService;
 
     @Override
@@ -28,13 +29,8 @@ public class HomeServlet extends HttpServlet {
         List<Product> products = productService.findAll();
 
         req.setAttribute("products", products);
-        RequestDispatcher requestDispatcher = req.getRequestDispatcher(AppConfig.VIEW_FRONTEND + "index.jsp");
+        RequestDispatcher requestDispatcher = req.getRequestDispatcher(AppConfig.VIEW_FRONTEND + "product-details.jsp");
         requestDispatcher.forward(req, resp);
 
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doPost(req, resp);
     }
 }
