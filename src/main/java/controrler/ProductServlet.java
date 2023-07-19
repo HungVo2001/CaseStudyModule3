@@ -1,31 +1,54 @@
 package controrler;
 
+import com.google.protobuf.Message;
+import com.mysql.cj.Session;
 import model.ESize;
 import model.Pageable;
 import model.Product;
 import model.ProductType;
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.FileUploadException;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.apache.commons.io.FilenameUtils;
 import service.IProductService;
 import service.IProductTypeService;
 import service.ProductServiceMysql;
 import service.ProductTypeServiceMysql;
 import untils.ValidatesUntils;
 
+import javax.mail.MessagingException;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
+import javax.servlet.http.Part;
+import java.io.*;
 import java.math.BigDecimal;
+import java.net.Authenticator;
+import java.net.PasswordAuthentication;
+import java.net.URISyntaxException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.sql.Date;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
+import java.util.UUID;
+
+import static jdk.nashorn.internal.objects.NativeError.getFileName;
 
 @WebServlet(name = "ProductServlet", urlPatterns = "/products")
 public class ProductServlet extends HttpServlet {
+    private static final String UPLOAD_DIRECTORY = "C:\\codegym\\Module3\\ProductManager\\src\\main\\webapp\\frontend\\assets\\images";
     private IProductService productService = new ProductServiceMysql();
     private IProductTypeService productTypeService = new ProductTypeServiceMysql();
 
@@ -68,7 +91,7 @@ public class ProductServlet extends HttpServlet {
 
         List<ProductType> productTypes = productTypeService.findAll();
         req.setAttribute("productTypes", productTypes);
-        req.setAttribute("sizes", ESize.values());
+//        req.setAttribute("sizes", ESize.values());
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("/WEB-INF/dashboard/products/edit.jsp");
         requestDispatcher.forward(req, resp);
 
@@ -123,7 +146,7 @@ public class ProductServlet extends HttpServlet {
         List<ProductType> productTypes = productTypeService.findAll();
 
         req.setAttribute("productTypes", productTypes);
-        req.setAttribute("sizes", ESize.values());
+//        req.setAttribute("sizes", ESize.values());
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("/WEB-INF/dashboard/products/create.jsp");
         requestDispatcher.forward(req, resp);
     }
@@ -139,12 +162,16 @@ public class ProductServlet extends HttpServlet {
                 saveProduct(req, resp);
                 break;
             case "edit":
-                updateProduct(req, resp);
+                try {
+                    updateProduct(req, resp);
+                } catch (URISyntaxException e) {
+                    throw new RuntimeException(e);
+                }
                 break;
         }
     }
 
-    private void updateProduct(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
+    private void updateProduct(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException, URISyntaxException {
         Product product = new Product();
         List<String> errors = new ArrayList<>();
         validateIdProduct(req, product, errors);
@@ -160,50 +187,36 @@ public class ProductServlet extends HttpServlet {
 //        BigDecimal price = new BigDecimal(req.getParameter("price"));
 
 
+
+        int quantity = Integer.parseInt(req.getParameter("quantity"));
+        String img = req.getParameter("img");
+
+        String fileName = "\\frontend\\assets\\images\\" + img;
+
+        String file = fileName.replace("\\","/");
+
+        product.setQuantity(quantity);
+        product.setImg(file);
+
+//
         DateTimeFormatter DATEFORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
         LocalDate createAt = LocalDate.parse(req.getParameter("createAt"), DATEFORMATTER);
-        int sizeId = Integer.parseInt(req.getParameter("size"));
-        ESize eSize = ESize.findESize(sizeId);
-//        String updateAtStr = req.getParameter("updateAt");
-//        LocalDate date = LocalDate.parse(updateAtStr);
-//        LocalDateTime dateTime = date.atStartOfDay();
-//        ZonedDateTime zonedDateTime = dateTime.atZone(ZoneOffset.UTC);
-//        String updateAtStr1 = zonedDateTime.format(DateTimeFormatter.ISO_INSTANT);
-//        Instant updateAt = Instant.parse(updateAtStr1);
+
         LocalDate now = LocalDate.now();
 
 
         product.setCreateAt(createAt);
         product.setUpdateAt(now.plusDays(1).atStartOfDay().toInstant(ZoneOffset.UTC));
 
-        product.setSize(eSize);
-
-//        if (errors.size() == 0){
-//            int idCate = Integer.parseInt(req.getParameter("product-type"));
-//            ProductType pt = productTypeService.findById(idCate);
-//            product.setProductType(pt);
-//            productService.update(product.getId(), product);
-//            req.getSession().setAttribute("messageEdit", "Sửa thành công");
-//            resp.sendRedirect("/products");
-//        }else {
-//            req.setAttribute("errors", errors);
-//            req.setAttribute("product", product);
-//            List<ProductType> productTypes = productTypeService.findAll();
-//            req.setAttribute("productTypes", productTypes);
-//            ESize[] eSizes = ESize.values();
-//            req.setAttribute("sizes",eSizes);
-//            RequestDispatcher requestDispatcher = req.getRequestDispatcher("/products/edit.jsp");
-//            requestDispatcher.forward(req, resp);
-//        }
         if(!errors.isEmpty()){
             req.setAttribute("errors", errors);
             req.setAttribute("product", product);
 
             List<ProductType> productTypes = productTypeService.findAll();
             req.setAttribute("productTypes", productTypes);
-            ESize[] sizes = ESize.values();
-            req.setAttribute("sizes", sizes);
+//            ESize[] sizes = ESize.values();
+//            req.setAttribute("sizes", sizes);
             RequestDispatcher requestDispatcher = req.getRequestDispatcher("/WEB-INF/dashboard/products/edit.jsp");
             requestDispatcher.forward(req, resp);
 
@@ -214,6 +227,7 @@ public class ProductServlet extends HttpServlet {
             req.getSession().setAttribute("messageEdit", "Sửa thành công");
             resp.sendRedirect("/products");            // Dùng respone để sendRedirect
         }
+
     }
 
     private void validateCreateAt(HttpServletRequest req, Product product, List<String> errors) {
@@ -235,6 +249,10 @@ public class ProductServlet extends HttpServlet {
 //        DateTimeFormatter DATEFORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
         LocalDate createAt = LocalDate.now();
+        int quantity = Integer.parseInt(req.getParameter("quantity"));
+        String img = req.getParameter("img");
+        product.setQuantity(quantity);
+        product.setImg(img);
 
 
 //        long id = (long)(Math.random() * 10000);
@@ -252,17 +270,17 @@ public class ProductServlet extends HttpServlet {
 //            int idCate = Integer.parseInt(req.getParameter("product-type"));
 //            ProductType pt = productTypeService.findById(idCate);
 
-            int sizeId = Integer.valueOf(req.getParameter("size"));
-            ESize eSize = ESize.findESize(sizeId);
-            product.setSize(eSize);
+//            int sizeId = Integer.valueOf(req.getParameter("size"));
+//            ESize eSize = ESize.findESize(sizeId);
+//            product.setSize(eSize);
 //
 //            product.setProductType(pt);
 //            productService.save(product);
 
             List<ProductType> productTypes = productTypeService.findAll();
             req.setAttribute("productTypes", productTypes);
-            ESize[] eSizes = ESize.values();
-            req.setAttribute("sizes",eSizes);
+//            ESize[] eSizes = ESize.values();
+//            req.setAttribute("sizes",eSizes);
         if (!errors.isEmpty()) {
             req.setAttribute("errors", errors);
             req.setAttribute("product", product);
@@ -272,7 +290,7 @@ public class ProductServlet extends HttpServlet {
         }
 
 //            req.setAttribute("message", "Thêm thành công");
-            RequestDispatcher requestDispatcher = req.getRequestDispatcher("/products/create.jsp");
+            RequestDispatcher requestDispatcher = req.getRequestDispatcher("/WEB-INF/dashboard/products/create.jsp");
             requestDispatcher.forward(req, resp);
 
     }
@@ -333,20 +351,41 @@ public class ProductServlet extends HttpServlet {
         }
 
     }
-    private void validateSizeProduct(HttpServletRequest req, Product product, List<String> errors) {
-        ESize eSize = null;
-        try {
-            // idCate có 2 trường hợp: "aaa" hoặc mã ko hợp lệ ko có trong DB 20000
-            int idSize = Integer.parseInt(req.getParameter("size"));
-            eSize = ESize.findESize(idSize);
+//    private void sendVerificationEmail(String recipientEmail, String verificationCode) {
+//        final String username = "your_email@gmail.com"; // Thay bằng địa chỉ email của bạn
+//        final String password = "your_email_password"; // Thay bằng mật khẩu email của bạn
+//
+//        Properties props = new Properties();
+//        props.put("mail.smtp.auth", "true");
+//        props.put("mail.smtp.starttls.enable", "true");
+//        props.put("mail.smtp.host", "smtp.gmail.com"); // Thay bằng máy chủ SMTP của bạn
+//        props.put("mail.smtp.port", "587"); // Thay bằng cổng SMTP của bạn
+//
+//        Session session = Session.getInstance(props, new Authenticator() {
+//            protected PasswordAuthentication getPasswordAuthentication() {
+//                return new PasswordAuthentication(username, password.toCharArray());
+//            }
+//        });
+//
+//        try {
+//            Message message = new MimeMessage(session);
+//            message.setFrom(new InternetAddress(username));
+//            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(recipientEmail));
+//            message.setSubject("Xác thực tài khoản");
+//
+//            String emailContent = "Nhấp vào liên kết dưới đây để xác thực tài khoản:\n\n";
+//            emailContent += "http://your_website.com/verify?code=" + verificationCode; // Thay bằng đường dẫn xác thực tài khoản của bạn
+//
+//            message.setText(emailContent);
+//
+//            Transport.send(message);
+//
+//            System.out.println("Email sent successfully!");
+//
+//        } catch (MessagingException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
-            if (eSize == null) {
-                errors.add("size sản phẩm không có trong csdl");
-            }
-        } catch (NumberFormatException numberFormatException) {
-            errors.add("Định dạng của size sản phẩm không hợp lệ");
-        }
-        product.setSize(eSize);
-    }
 
 }

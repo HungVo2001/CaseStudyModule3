@@ -1,6 +1,6 @@
 package service;
 
-import model.Product;
+import dao.DbContext;
 import model.ProductType;
 
 import java.sql.*;
