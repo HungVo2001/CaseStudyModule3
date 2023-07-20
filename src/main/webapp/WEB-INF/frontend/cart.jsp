@@ -60,11 +60,10 @@
                     <a class="deleteItem">
                       <i class="delete fa-regular fa-trash-can"></i>
                     </a>
-                    <a class="moveToWishlist">Move to Wishlist</a>
                   </div>
                 </div>
                 <div class="price-container" data-select2-id="select2-data-9-7f0z">
-                  <div class="price">28.99€</div>
+                  <div class="price"></div>
                   <select class="wide selectable2 manual select2-hidden-accessible"
                     data-select2-id="select2-data-1-mi7w" tabindex="-1" aria-hidden="true">
                     <option value="0" disabled="disabled">0</option>
@@ -120,7 +119,7 @@
             <div><i class="fa-solid fa-greater-than"></i></div>
           </a>
           <span class="choice">or</span>
-          <a href="/" class="back">
+          <a href="/shop" class="back">
             <div><i class="fa-solid fa-less-than"></i>Continue shopping</div>
           </a>
         </div>

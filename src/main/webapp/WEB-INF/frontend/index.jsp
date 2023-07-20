@@ -55,58 +55,58 @@
         </div>
         <div class="col-lg-6">
           <div class="main-button">
-            <a href="shop.jsp">View All</a>
+            <a href="/shop">View All</a>
           </div>
         </div>
         <div class="col-lg-3 col-md-6">
           <div class="item">
             <div class="thumb">
-              <a href="product-details.jsp"><img src="../../dashboard/asset/assets/images/trending-01.jpg" alt=""></a>
+              <a href="/product"><img src="../../dashboard/asset/assets/images/trending-01.jpg" alt=""></a>
               <span class="price"><em>$28</em>$20</span>
             </div>
             <div class="down-content">
               <span class="category">Action</span>
               <h4>Assasin Creed</h4>
-              <a href="product-details.jsp"><i style="margin-top: 30%" class=" fa fa-shopping-bag"></i></a>
+              <a href="/product"><i style="margin-top: 30%" class=" fa fa-shopping-bag"></i></a>
             </div>
           </div>
         </div>
         <div class="col-lg-3 col-md-6">
           <div class="item">
             <div class="thumb">
-              <a href="product-details.jsp"><img src="../../dashboard/asset/assets/images/trending-02.jpg" alt=""></a>
+              <a href="/product"><img src="../../dashboard/asset/assets/images/trending-02.jpg" alt=""></a>
               <span class="price">$44</span>
             </div>
             <div class="down-content">
               <span class="category">Action</span>
               <h4>Assasin Creed</h4>
-              <a href="product-details.jsp"><i style="margin-top: 30%" class="fa fa-shopping-bag"></i></a>
+              <a href="/product"><i style="margin-top: 30%" class="fa fa-shopping-bag"></i></a>
             </div>
           </div>
         </div>
         <div class="col-lg-3 col-md-6">
           <div class="item">
             <div class="thumb">
-              <a href="product-details.jsp"><img src="../../dashboard/asset/assets/images/trending-03.jpg" alt=""></a>
+              <a href="/product"><img src="../../dashboard/asset/assets/images/trending-03.jpg" alt=""></a>
               <span class="price"><em>$64</em>$44</span>
             </div>
             <div class="down-content">
               <span class="category">Action</span>
               <h4>Assasin Creed</h4>
-              <a href="product-details.jsp"><i style="margin-top: 30%" class="fa fa-shopping-bag"></i></a>
+              <a href="/product"><i style="margin-top: 30%" class="fa fa-shopping-bag"></i></a>
             </div>
           </div>
         </div>
         <div class="col-lg-3 col-md-6">
           <div class="item">
             <div class="thumb">
-              <a href="product-details.jsp"><img src="../../dashboard/asset/assets/images/trending-04.jpg" alt=""></a>
+              <a href="/product"><img src="../../dashboard/asset/assets/images/trending-04.jpg" alt=""></a>
               <span class="price">$32</span>
             </div>
             <div class="down-content">
               <span class="category">Action</span>
               <h4>Assasin Creed</h4>
-              <a href="product-details.jsp"><i style="margin-top: 30%" class=" fa fa-shopping-bag"></i></a>
+              <a href="/product"><i style="margin-top: 30%" class=" fa fa-shopping-bag"></i></a>
             </div>
           </div>
         </div>
@@ -131,72 +131,72 @@
         <div class="col-lg-2 col-md-6 col-sm-6">
           <div class="item">
             <div class="thumb">
-              <a href="product-details.jsp"><img src="../../dashboard/asset/assets/images/top-game-01.jpg" alt=""></a>
+              <a href="/product"><img src="../../dashboard/asset/assets/images/top-game-01.jpg" alt=""></a>
             </div>
             <div class="down-content">
               <span class="category">Adventure</span>
               <h4>Assasin Creed</h4>
-              <a href="product-details.jsp">Explore</a>
+              <a href="/product">Explore</a>
             </div>
           </div>
         </div>
         <div class="col-lg-2 col-md-6 col-sm-6">
           <div class="item">
             <div class="thumb">
-              <a href="product-details.jsp"><img src="../../dashboard/asset/assets/images/top-game-02.jpg" alt=""></a>
+              <a href="/product"><img src="../../dashboard/asset/assets/images/top-game-02.jpg" alt=""></a>
             </div>
             <div class="down-content">
               <span class="category">Adventure</span>
               <h4>Assasin Creed</h4>
-              <a href="product-details.jsp">Explore</a>
+              <a href="/product">Explore</a>
             </div>
           </div>
         </div>
         <div class="col-lg-2 col-md-6 col-sm-6">
           <div class="item">
             <div class="thumb">
-              <a href="product-details.jsp"><img src="../../dashboard/asset/assets/images/top-game-03.jpg" alt=""></a>
+              <a href="/product"><img src="../../dashboard/asset/assets/images/top-game-03.jpg" alt=""></a>
             </div>
             <div class="down-content">
               <span class="category">Adventure</span>
               <h4>Assasin Creed</h4>
-              <a href="product-details.jsp">Explore</a>
+              <a href="/product">Explore</a>
             </div>
           </div>
         </div>
         <div class="col-lg-2 col-md-6 col-sm-6">
           <div class="item">
             <div class="thumb">
-              <a href="product-details.jsp"><img src="../../dashboard/asset/assets/images/top-game-04.jpg" alt=""></a>
+              <a href="/product"><img src="../../dashboard/asset/assets/images/top-game-04.jpg" alt=""></a>
             </div>
             <div class="down-content">
               <span class="category">Adventure</span>
               <h4>Assasin Creed</h4>
-              <a href="product-details.jsp">Explore</a>
+              <a href="/product">Explore</a>
             </div>
           </div>
         </div>
         <div class="col-lg-2 col-md-6 col-sm-6">
           <div class="item">
             <div class="thumb">
-              <a href="product-details.jsp"><img src="../../dashboard/asset/assets/images/top-game-05.jpg" alt=""></a>
+              <a href="/product"><img src="../../dashboard/asset/assets/images/top-game-05.jpg" alt=""></a>
             </div>
             <div class="down-content">
               <span class="category">Adventure</span>
               <h4>Assasin Creed</h4>
-              <a href="product-details.jsp">Explore</a>
+              <a href="/product">Explore</a>
             </div>
           </div>
         </div>
         <div class="col-lg-2 col-md-6 col-sm-6">
           <div class="item">
             <div class="thumb">
-              <a href="product-details.jsp"><img src="../../dashboard/asset/assets/images/top-game-06.jpg" alt=""></a>
+              <a href="/product"><img src="../../dashboard/asset/assets/images/top-game-06.jpg" alt=""></a>
             </div>
             <div class="down-content">
               <span class="category">Adventure</span>
               <h4>Assasin Creed</h4>
-              <a href="product-details.jsp">Explore</a>
+              <a href="/product">Explore</a>
             </div>
           </div>
         </div>
@@ -217,7 +217,7 @@
           <div class="item">
             <h4>Action</h4>
             <div class="thumb">
-              <a href="product-details.jsp"><img src="../../dashboard/asset/assets/images/categories-01.jpg" alt=""></a>
+              <a href="/product"><img src="../../dashboard/asset/assets/images/categories-01.jpg" alt=""></a>
             </div>
           </div>
         </div>
@@ -225,7 +225,7 @@
           <div class="item">
             <h4>Action</h4>
             <div class="thumb">
-              <a href="product-details.jsp"><img src="../../dashboard/asset/assets/images/categories-05.jpg" alt=""></a>
+              <a href="/product"><img src="../../dashboard/asset/assets/images/categories-05.jpg" alt=""></a>
             </div>
           </div>
         </div>
@@ -233,7 +233,7 @@
           <div class="item">
             <h4>Action</h4>
             <div class="thumb">
-              <a href="product-details.jsp"><img src="../../dashboard/asset/assets/images/categories-03.jpg" alt=""></a>
+              <a href="/product"><img src="../../dashboard/asset/assets/images/categories-03.jpg" alt=""></a>
             </div>
           </div>
         </div>
@@ -241,7 +241,7 @@
           <div class="item">
             <h4>Action</h4>
             <div class="thumb">
-              <a href="product-details.jsp"><img src="../../dashboard/asset/assets/images/categories-04.jpg" alt=""></a>
+              <a href="/product"><img src="../../dashboard/asset/assets/images/categories-04.jpg" alt=""></a>
             </div>
           </div>
         </div>
@@ -249,7 +249,7 @@
           <div class="item">
             <h4>Action</h4>
             <div class="thumb">
-              <a href="product-details.jsp"><img src="../../dashboard/asset/assets/images/categories-05.jpg" alt=""></a>
+              <a href="/product"><img src="../../dashboard/asset/assets/images/categories-05.jpg" alt=""></a>
             </div>
           </div>
         </div>
