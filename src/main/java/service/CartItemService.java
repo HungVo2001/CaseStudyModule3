@@ -2,6 +2,7 @@ package service;
 
 import dao.DbContext;
 import model.CartItem;
+import model.Product;
 
 import java.math.BigDecimal;
 import java.sql.Connection;
@@ -12,6 +13,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CartItemService extends DbContext implements ICartItemService{
+    private IProductService productService;
+    public CartItemService(){
+        productService = new ProductServiceMysql();
+    }
 
     @Override
     public List<CartItem> getAllCartItems(long idCart) {
@@ -30,8 +35,12 @@ public class CartItemService extends DbContext implements ICartItemService{
                 int quantity  = rs.getInt("quantity");
                 BigDecimal price = rs.getBigDecimal("price");
 
+                Product product = productService.findById(idProduct);
+
                 CartItem cartItem = new CartItem(id, idProduct, idCartDB, price, quantity );
+                cartItem.setProduct(product);
                 cartItems.add(cartItem);
+
 
             }
         }catch (SQLException e){
@@ -50,6 +59,8 @@ public class CartItemService extends DbContext implements ICartItemService{
             ps.setLong(2,cartItem.getIdCart());
             ps.setInt(3,cartItem.getQuantity());
             ps.setBigDecimal(4,cartItem.getPrice());
+
+            System.out.println("saveCartItem: " + ps);
             ps.executeUpdate();
 
             ps = connection.prepareStatement("SELECT LAST_INSERT_ID() as last_id");

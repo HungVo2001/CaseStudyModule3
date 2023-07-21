@@ -6,7 +6,7 @@ public class CartItem {
     private long id;
     private long idProduct;
     private long idCart;
-
+    private Product product;
     private BigDecimal price;
     private int quantity;
 
@@ -19,6 +19,14 @@ public class CartItem {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
     public long getIdProduct() {

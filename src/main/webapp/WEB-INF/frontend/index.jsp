@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html lang="en">
 
 <head>
@@ -161,12 +162,12 @@
           <div class="col-lg-2 col-md-6 col-sm-6">
             <div class="item">
               <div class="thumb">
-                <a href="/product"><img src="${p.getImg()}" alt=""></a>
+                <a href="/product?id=${p.id}"><img src="${p.getImg()}" alt=""></a>
               </div>
               <div class="down-content">
                 <span class="category">ACTION</span>
                 <h4>${p.getName()}</h4>
-                <a href="/product?id=${p.id}">Explore</a>
+                <a href="/product?id=${p.id}">Explore</a><i style="margin-top: 30%" class=" fa fa-shopping-bag"></i></a>
               </div>
             </div>
           </div>
@@ -241,12 +242,12 @@
           <div class="col-lg-2 col-md-6 col-sm-6">
             <div class="item">
               <div class="thumb">
-                <a href="/product"><img src="${p.getImg()}" alt=""></a>
+                <a href="/product?id=${p.id}"><img src="${p.getImg()}" alt=""></a>
               </div>
               <div class="down-content">
                 <span class="category">LOGIC</span>
                 <h4>${p.getName()}</h4>
-                <a href="/product">Explore</a>
+                <a href="/product?id=${p.id}">Explore</a><i style="margin-top: 30%" class=" fa fa-shopping-bag"></i></a>
               </div>
             </div>
           </div>

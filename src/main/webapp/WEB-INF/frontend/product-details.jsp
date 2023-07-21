@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html lang="en">
 
   <head>
@@ -39,7 +40,7 @@
       <div class="row">
         <div class="col-lg-6">
           <div class="left-image">
-            <img src="../../dashboard/asset/assets/images/single-game.jpg" alt="">
+            <img src="${p.getImg()}" alt="">
           </div>
         </div>
         <div class="col-lg-6 align-self-center">

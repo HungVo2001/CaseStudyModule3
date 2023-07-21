@@ -10,5 +10,9 @@ public interface ICartService {
 
     void addToCart(int idProduct, int quantity, long id);
 
-    
+
+    Cart updateCartInfo(long idUser, long idProduct, int quantity);
+
+
+
 }

@@ -1,5 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <html lang="en">
 
 <head>
@@ -40,53 +42,56 @@
       <div class="cartpage-left">
         <div class="cartpage-section" data-select2-id="select2-data-13-9tyk">
           <h2>Cart</h2>
-          <div class="cart-listing" data-select2-id="select2-data-12-kkm5">
-            <div class="cart-item" data-select2-id="select2-data-11-d37n">
-              <div class="item-container" data-select2-id="select2-data-10-xtlc">
-                <a href="../../dashboard/asset/assets/images/single-game.jpg" class="cover">
-                  <picture>
-                    <img alt="Six Days in fallu" src="../../dashboard/asset/assets/images/single-game.jpg" loading="lazy">
-                  </picture>
-                </a>
-                <div class="information">
-                  <div class="name">
-                    <div class="platform platform-steam">
-                      <div> <img class="icon-steam" src="../../dashboard/asset/assets/images/steam.png" alt=""></div>
+          <c:forEach items="${requestScope.cart.getCartItems()}" var="cartItem">
+            <div class="cart-listing" data-select2-id="select2-data-12-kkm5">
+              <div class="cart-item" data-select2-id="select2-data-11-d37n">
+                <div class="item-container" data-select2-id="select2-data-10-xtlc">
+                  <a href="../../dashboard/asset/assets/images/single-game.jpg" class="cover">
+                    <picture>
+                      <img alt="Six Days in fallu" src="${cartItem.product.img}" loading="lazy">
+                    </picture>
+                  </a>
+                  <div class="information">
+                    <div class="name">
+                      <div class="platform platform-steam">
+                        <div> <img class="icon-steam" src="../../dashboard/asset/assets/images/steam.png" alt=""></div>
+                      </div>
+                      <span title="Six Days in Fallujah" class="title">${cartItem.product.name}</span>
                     </div>
-                    <span title="Six Days in Fallujah" class="title">Six Days in Fallujah</span>
+                    <div class="type">Steam</div>
+                    <div class="actions">
+                      <a class="deleteItem">
+                        <a href="javascript:void(0)" onclick="handleDeleteCartItem(${cartItem.getId()})">
+                        <i class="delete fa-regular fa-trash-can"></i>
+                        </a>
+                      </a>
+                      <a class="moveToWishlist">Move to Wishlist</a>
+                    </div>
                   </div>
-                  <div class="type">Steam</div>
-                  <div class="actions">
-                    <a class="deleteItem">
-                      <i class="delete fa-regular fa-trash-can"></i>
-                    </a>
-                    <a class="moveToWishlist">Move to Wishlist</a>
-                  </div>
-                </div>
-                <div class="price-container" data-select2-id="select2-data-9-7f0z">
-                  <div class="price">${product.getPrice()}</div>
-                  <input type="number" name="" style="width: 80px;">
-<%--                  <select class="wide selectable2 manual select2-hidden-accessible"--%>
-<%--                    data-select2-id="select2-data-1-mi7w" tabindex="-1" aria-hidden="true">--%>
-<%--                    <option value="0" disabled="disabled">0</option>--%>
-<%--                    <option value="1" data-select2-id="select2-data-3-bt80">1</option>--%>
-<%--                    <option value="2">2</option>--%>
-<%--                    <option value="3">3</option>--%>
-<%--                    <option value="4">4</option>--%>
-<%--                    <option value="5">5</option>--%>
-<%--                    <option value="6">6</option>--%>
-<%--                    <option value="7">7</option>--%>
-<%--                    <option value="8">8</option>--%>
-<%--                    <option value="9">9</option>--%>
-<%--                    <option value="10">10</option>--%>
-<%--                  </select>--%>
+                  <div class="price-container" data-select2-id="select2-data-9-7f0z">
+                    <div class="price">${cartItem.price * cartItem.quantity}</div>
+                    <input onchange="handleQuantityChange(this,${cartItem.product.id})"  min="1" max="100" type="number" name="" style="width: 80px;" value="${cartItem.quantity}">
+                      <%--                  <select class="wide selectable2 manual select2-hidden-accessible"--%>
+                      <%--                    data-select2-id="select2-data-1-mi7w" tabindex="-1" aria-hidden="true">--%>
+                      <%--                    <option value="0" disabled="disabled">0</option>--%>
+                      <%--                    <option value="1" data-select2-id="select2-data-3-bt80">1</option>--%>
+                      <%--                    <option value="2">2</option>--%>
+                      <%--                    <option value="3">3</option>--%>
+                      <%--                    <option value="4">4</option>--%>
+                      <%--                    <option value="5">5</option>--%>
+                      <%--                    <option value="6">6</option>--%>
+                      <%--                    <option value="7">7</option>--%>
+                      <%--                    <option value="8">8</option>--%>
+                      <%--                    <option value="9">9</option>--%>
+                      <%--                    <option value="10">10</option>--%>
+                      <%--                  </select>--%>
 
-                  <span class="select2 select2-container select2-container--default" dir="ltr"
-                    data-select2-id="select2-data-2-v91o">
+                    <span class="select2 select2-container select2-container--default" dir="ltr"
+                          data-select2-id="select2-data-2-v91o">
                     <span class="selection">
                       <span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true"
-                        aria-expanded="false" tabindex="0" aria-disabled="false"
-                        aria-labelledby="select2-v6kx-container" aria-controls="select2-v6kx-container">
+                            aria-expanded="false" tabindex="0" aria-disabled="false"
+                            aria-labelledby="select2-v6kx-container" aria-controls="select2-v6kx-container">
 <%--                        <span class="select2-selection__rendered" id="select2-v6kx-container" role="textbox"--%>
 <%--                          aria-readonly="true" title="1">1</span>--%>
 <%--                        <span class="select2-selection__arrow" role="presentation">--%>
@@ -95,11 +100,12 @@
                       </span>
                     </span>
                     <span class="dropdown-wrapper" aria-hidden="true"></span>
-                  </span>
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+          </c:forEach>
         </div>
         <div class="separator"></div>
       </div>
@@ -108,7 +114,9 @@
         <div class="cart-summary">
           <div class="summary-row">
             <span>Official price</span>
-            <span>38.99€</span>
+            <span>${cartItem.product.price}</span>
+<%--            <span><fmt:formatNumber value="${cartItem.product.price}" pattern="#,##0" />VND</span>--%>
+
           </div>
           <div class="summary-row">
             <span>Discount</span>
@@ -116,13 +124,14 @@
           </div>
           <div class="summary-row">
             <span>Subtotal</span>
-            <span>28.99€</span>
+            <span>${cart.total}</span>
+<%--            <span><fmt:formatNumber value="${cart.total}" pattern="#,##0" />VND</span>--%>
           </div>
           <a class="button gotopayment">Go to payment
             <div><i class="fa-solid fa-greater-than"></i></div>
           </a>
           <span class="choice">or</span>
-          <a href="/" class="back">
+          <a href="/homes" class="back">
             <div><i class="fa-solid fa-less-than"></i>Continue shopping</div>
           </a>
         </div>
@@ -170,6 +179,18 @@
   <jsp:include page="/WEB-INF/layout/footer_container.jsp"></jsp:include>
 
   <jsp:include page="/WEB-INF/layout/java_script.jsp"></jsp:include>
+  <script>
+    function handleQuantityChange(eQuantity, idProduct){
+      let url = `/cart?action=update&id=\${idProduct}&quantity=\${eQuantity.value}`;
+      window.location.assign(url);
+    }
+  </script>
+  <script>
+    function handleDeleteCartItem(id) {
+      let url = `/cart?action=delete&id=\${id}`;
+      window.location.assign(url);
+    }
+  </script>
 
 </body>
 

@@ -36,6 +36,7 @@ public class CartService extends DbContext implements ICartService{
                 cart = new Cart(id,date,total,idUserDB);
                 List<CartItem> cartItems = cartItemService.getAllCartItems(cart.getId());
                 cart.setCartItems(cartItems);
+                cart.updateTotal();
             }
         }catch (SQLException e){
             e.printStackTrace();
@@ -89,9 +90,25 @@ public class CartService extends DbContext implements ICartService{
             cartItemService.updateCartItem(cartItem);
         }else {
             CartItem cartItemCreate = new CartItem(idProduct, product.getPrice(),quantity);
+            cartItemCreate.setIdCart(cart.getId());
             cartItemService.saveCartItem(cartItemCreate);
         }
        cart.setTotal(total);
         updateCart(cart);
     }
+
+    @Override
+    public Cart updateCartInfo(long idUser, long idProduct, int quantity) {
+
+         Cart cart = getCartById(idUser);
+         CartItem cartItem = cartItemService.findCartItemById(cart.getId(),idProduct);
+         if(cartItem != null){
+             cartItem.setQuantity(quantity);
+             cartItemService.updateCartItem(cartItem);
+         }
+         cart = getCartById(idUser);
+         return cart;
+    }
+
+
 }

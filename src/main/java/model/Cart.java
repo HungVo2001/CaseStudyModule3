@@ -78,4 +78,13 @@ public class Cart {
     public void setCartItems(List<CartItem> cartItems) {
         this.cartItems = cartItems;
     }
+    public void updateTotal() {
+        double total = 0;
+        if (cartItems != null) {
+            for (int i = 0; i < cartItems.size(); i++) {
+                total += cartItems.get(i).getQuantity() * cartItems.get(i).getPrice().intValue();
+            }
+        }
+        this.total = total;
+    }
 }
