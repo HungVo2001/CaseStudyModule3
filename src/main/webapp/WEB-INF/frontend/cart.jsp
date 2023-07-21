@@ -65,7 +65,7 @@
                 </div>
                 <div class="price-container" data-select2-id="select2-data-9-7f0z">
                   <div class="price">${product.getPrice()}</div>
-                  <input type="number" name="" style="width: 80px;" value="${cartItem.quantity}">
+                  <input type="number" name="" style="width: 80px;">
 <%--                  <select class="wide selectable2 manual select2-hidden-accessible"--%>
 <%--                    data-select2-id="select2-data-1-mi7w" tabindex="-1" aria-hidden="true">--%>
 <%--                    <option value="0" disabled="disabled">0</option>--%>

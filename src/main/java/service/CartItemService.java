@@ -21,6 +21,7 @@ public class CartItemService extends DbContext implements ICartItemService{
             PreparedStatement ps = connection.prepareStatement("SELECT * FROM cart_items where id_cart = ?");
 
             ps.setLong(1, idCart);
+            System.out.println("getAllCartItems" + ps);
             ResultSet rs = ps.executeQuery();
             while (rs.next()){
                 long id = rs.getLong("id");
@@ -49,9 +50,10 @@ public class CartItemService extends DbContext implements ICartItemService{
             ps.setLong(2,cartItem.getIdCart());
             ps.setInt(3,cartItem.getQuantity());
             ps.setBigDecimal(4,cartItem.getPrice());
-
             ps.executeUpdate();
+
             ps = connection.prepareStatement("SELECT LAST_INSERT_ID() as last_id");
+            System.out.println("saveCartItem" + ps);
             ResultSet rs = ps.executeQuery();
             while (rs.next()){
                 long lastId = rs.getLong("last_id");
@@ -73,8 +75,13 @@ public class CartItemService extends DbContext implements ICartItemService{
             ps.setInt(1,cartItem.getQuantity());
             ps.setLong(2,cartItem.getId());
             ps.executeUpdate();
+
+
             ps = connection.prepareStatement("SELECT * FROM `cart_items` where id = ?");
+
             ps.setLong(1,cartItem.getId());
+
+            System.out.println("updateCartItem" + ps);
             ResultSet rs = ps.executeQuery();
             while (rs.next()){
                 long id = rs.getLong("id");
@@ -99,6 +106,8 @@ public class CartItemService extends DbContext implements ICartItemService{
             Connection connection = getConnection();
             PreparedStatement ps = connection.prepareStatement("DELETE FROM `cart_items` WHERE (`id`= ?)");
             ps.setLong(1,idCartItem);
+
+            System.out.println("deleteCartItem" + ps);
             ps.executeUpdate();
         }catch (SQLException e){
             e.printStackTrace();
@@ -110,6 +119,10 @@ public class CartItemService extends DbContext implements ICartItemService{
         try {
             Connection connection = getConnection();
             PreparedStatement ps = connection.prepareStatement("SELECT * FROM `cart_items` where id_cart = ? and id_product = ?");
+            ps.setLong(1,cartId);
+            ps.setLong(2,idProduct);
+
+            System.out.println("findCartItemById" + ps);
             ResultSet rs =  ps.executeQuery();
             while (rs.next()){
                 long id = rs.getLong("id");

@@ -12,8 +12,10 @@ import java.util.List;
 public class CartService extends DbContext implements ICartService{
     private IProductService productService;
     private ICartItemService cartItemService;
+    private ICartService cartService;
     public CartService(){
         productService = new ProductServiceMysql();
+        cartItemService = new CartItemService();
     }
     @Override
     public Cart getCartById(long idUser) {
@@ -23,6 +25,7 @@ public class CartService extends DbContext implements ICartService{
             PreparedStatement ps = connection.prepareStatement("SELECT * FROM cart where id_user = ?");
 
             ps.setLong(1,idUser);
+            System.out.println("getCartById" + ps);
             ResultSet rs = ps.executeQuery();
             while (rs.next()){
                 long id = rs.getLong("id");
@@ -31,11 +34,9 @@ public class CartService extends DbContext implements ICartService{
                 long idUserDB = rs.getLong("id_user");
 
                 cart = new Cart(id,date,total,idUserDB);
-                return cart;
+                List<CartItem> cartItems = cartItemService.getAllCartItems(cart.getId());
+                cart.setCartItems(cartItems);
             }
-
-            List<CartItem> cartItems = cartItemService.getAllCartItems(cart.getId());
-            cart.setCartItems(cartItems);
         }catch (SQLException e){
             e.printStackTrace();
         }
@@ -54,6 +55,7 @@ public class CartService extends DbContext implements ICartService{
             ps.setLong(3, cart.getIdUser());
             ps.executeUpdate();
 
+            System.out.println("createCart" + ps);
             ps = connection.prepareStatement("SELECT LAST_INSERT_ID() as last_id");
             ResultSet rs = ps.executeQuery();
             while (rs.next()){
@@ -76,18 +78,20 @@ public class CartService extends DbContext implements ICartService{
     public void addToCart(int idProduct, int quantity, long idUser) {
         Product product = productService.findById(idProduct);
         Cart cart = getCartById(idUser);
+        double total = product.getPrice().doubleValue() * quantity;
         if (cart == null){
-            cart = new Cart(LocalDate.now(),0, idUser);
+            cart = new Cart(LocalDate.now(),total, idUser);
             cart = createCart(cart);
-
         }
         CartItem cartItem = cartItemService.findCartItemById(cart.getId(), idProduct);
         if (cartItem != null){
             cartItem.setQuantity(quantity);
             cartItemService.updateCartItem(cartItem);
         }else {
-            CartItem cartItemCreate = new CartItem(idProduct,cartItem.getId(),product.getPrice(),quantity);
+            CartItem cartItemCreate = new CartItem(idProduct, product.getPrice(),quantity);
             cartItemService.saveCartItem(cartItemCreate);
         }
+       cart.setTotal(total);
+        updateCart(cart);
     }
 }

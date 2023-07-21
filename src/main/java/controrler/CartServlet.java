@@ -54,14 +54,36 @@ public class CartServlet extends HttpServlet {
 
     }
 
-    private void addToCartView(HttpServletRequest req, HttpServletResponse resp) {
+    private void addToCartView(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         int idProduct = Integer.parseInt(req.getParameter("id"));
-        int quantity = 1;
+        int quantity = Integer.parseInt(req.getParameter("qty"));
 
         User user = (User) req.getSession().getAttribute("user");
+        if (user == null){
+            resp.sendRedirect("/login");
+            return;
+        }
         iCartService.addToCart(idProduct, quantity, user.getId());
 
         Cart cart = iCartService.getCartById(user.getId());
         req.setAttribute("cart", cart);
+    }
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        String action = req.getParameter("action");
+        if (action == null){
+            action = "";
+        }
+        switch (action){
+            case "add":
+                addToCartView(req,resp);
+                break;
+            case "update":
+                break;
+        }
+        req.getRequestDispatcher(AppConfig.VIEW_FRONTEND + "cart.jsp").forward(req,resp);
+
+
     }
 }

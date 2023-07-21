@@ -88,13 +88,13 @@
           <div class="col-lg-3 col-md-6">
             <div class="item">
               <div class="thumb">
-                <a href="/product"><img src="${p.getImg()}" alt=""></a>
+                <a href="/product?id=${p.id}"><img src="${p.getImg()}" alt=""></a>
                 <span class="price">${p.getPrice()}</span>
               </div>
               <div class="down-content">
                 <span class="category">Action</span>
                 <h4>${p.getName()}</h4>
-                <a href="/product"><i style="margin-top: 30%" class=" fa fa-shopping-bag"></i></a>
+                <a href="/product?id=${p.id}"><i style="margin-top: 30%" class=" fa fa-shopping-bag"></i></a>
               </div>
             </div>
           </div>
@@ -166,7 +166,7 @@
               <div class="down-content">
                 <span class="category">ACTION</span>
                 <h4>${p.getName()}</h4>
-                <a href="/product">Explore</a>
+                <a href="/product?id=${p.id}">Explore</a>
               </div>
             </div>
           </div>
@@ -254,96 +254,6 @@
       </div>
     </div>
   </div>
-<%--  <div class="indies-container">--%>
-<%--    <div class="character"></div>--%>
-<%--    <div class="games">--%>
-<%--      <div class="headline">--%>
-<%--        <h2>Top indie games</h2>--%>
-<%--        <a class="button button-secondary" href="/en/search/?cat[]=32" title="Top indie games">View all</a>--%>
-<%--      </div>--%>
-<%--      <div class="listing-games listing-slider">--%>
-<%--        <div class="item">--%>
-<%--          <a class="cover video is-playable played" href="https://www.instant-gaming.com/en/13993-buy-assetto-corsa-competizione-2023-gt-world-challenge-pack-pc-game-steam/">--%>
-<%--            <picture>--%>
-<%--              <img class="picture" data-src="https://gaming-cdn.com/images/products/13993/380x218/assetto-corsa-competizione-2023-gt-world-challenge-pack-pc-game-steam-cover.jpg?v=1689850800" alt="Assetto Corsa Competizione - 2023 GT World Challenge Pack" src="https://gaming-cdn.com/images/products/13993/380x218/assetto-corsa-competizione-2023-gt-world-challenge-pack-pc-game-steam-cover.jpg?v=1689850800" loading="lazy" onload="lazyLoadImage(this)">--%>
-<%--            </picture>--%>
-<%--            <video preload="none" loop="" muted="" playsinline="">--%>
-<%--              <source src="https://gaming-cdn.com/videos/products/13993/800x450/assetto-corsa-competizione-2023-gt-world-challenge-pack-pc-game-steam-preview.webm?v=1681977774" type="video/webm">--%>
-<%--            </video>--%>
-<%--            <div class="discount">-23%</div>--%>
-<%--          </a>--%>
-<%--          <div class="information">--%>
-<%--            <div class="text">--%>
-<%--              <div class="name">--%>
-<%--                <span class="dlc">DLC</span>--%>
-<%--                <span class="title">Assetto Corsa Competizione - 2023 GT World Challenge Pack</span>--%>
-<%--              </div>--%>
-<%--            </div>--%>
-<%--            <div class="price">9.99€</div>--%>
-<%--          </div>--%>
-<%--        </div>--%>
-<%--        <div class="item">--%>
-<%--          <a class="cover video is-playable played" href="https://www.instant-gaming.com/en/8256-buy-smalland-survive-the-wilds-pc-game-steam/">--%>
-<%--            <picture>--%>
-<%--              <img class="picture" data-src="https://gaming-cdn.com/images/products/8256/380x218/smalland-survive-the-wilds-pc-game-steam-cover.jpg?v=1689850800" alt="Smalland: Survive the Wilds" src="https://gaming-cdn.com/images/products/8256/380x218/smalland-survive-the-wilds-pc-game-steam-cover.jpg?v=1689850800" loading="lazy" onload="lazyLoadImage(this)">--%>
-<%--            </picture>--%>
-<%--            <video preload="none" loop="" muted="" playsinline="">--%>
-<%--              <source src="https://gaming-cdn.com/videos/products/8256/800x450/smalland-survive-the-wilds-pc-game-steam-preview.webm?v=1680105720" type="video/webm">--%>
-<%--            </video>--%>
-<%--            <div class="discount">-46%</div>--%>
-<%--          </a>--%>
-<%--          <div class="information">--%>
-<%--            <div class="text">--%>
-<%--              <div class="name">--%>
-<%--                <span class="title">Smalland: Survive the Wilds</span>--%>
-<%--              </div>--%>
-<%--            </div>--%>
-<%--            <div class="price">13.56€</div>--%>
-<%--          </div>--%>
-<%--        </div>--%>
-<%--        <div class="item">--%>
-<%--          <a class="cover video is-playable played" href="https://www.instant-gaming.com/en/13889-buy-cassette-beasts-pc-game-steam/">--%>
-<%--            <picture>--%>
-<%--              <img class="picture" data-src="https://gaming-cdn.com/images/products/13889/380x218/cassette-beasts-pc-game-steam-cover.jpg?v=1689850800" alt="Cassette Beasts" src="https://gaming-cdn.com/images/products/13889/380x218/cassette-beasts-pc-game-steam-cover.jpg?v=1689850800" loading="lazy" onload="lazyLoadImage(this)">--%>
-<%--            </picture>--%>
-<%--            <video preload="none" loop="" muted="" playsinline="">--%>
-<%--              <source src="https://gaming-cdn.com/videos/products/13889/800x450/cassette-beasts-pc-game-steam-preview.webm?v=1683636041" type="video/webm">--%>
-<%--            </video>--%>
-<%--            <div class="discount">-27%</div>--%>
-<%--          </a>--%>
-<%--          <div class="information">--%>
-<%--            <div class="text">--%>
-<%--              <div class="name">--%>
-<%--                <span class="title">Cassette Beasts</span>--%>
-<%--              </div>--%>
-<%--            </div>--%>
-<%--            <div class="price">14.67€</div>--%>
-<%--          </div>--%>
-<%--        </div>--%>
-<%--        <div class="item">--%>
-<%--          <a class="cover video" href="https://www.instant-gaming.com/en/4793-buy-barotrauma-pc-mac-game-steam/" title="buy Barotrauma Steam 17.29€">--%>
-<%--            <picture>--%>
-<%--              <img class="picture" data-src="https://gaming-cdn.com/images/products/4793/380x218/barotrauma-pc-mac-game-steam-cover.jpg?v=1689850800" alt="Barotrauma" src="https://gaming-cdn.com/images/products/4793/380x218/barotrauma-pc-mac-game-steam-cover.jpg?v=1689850800" loading="lazy" onload="lazyLoadImage(this)">--%>
-<%--            </picture>--%>
-<%--            <video preload="none" loop="" muted="" playsinline="">--%>
-<%--              <source src="https://gaming-cdn.com/videos/products/4793/800x450/barotrauma-pc-mac-game-steam-preview.webm?v=1678190707" type="video/webm">--%>
-<%--            </video>--%>
-<%--            <div class="discount">-51%</div>--%>
-<%--          </a>--%>
-<%--          <div class="information">--%>
-<%--            <div class="text">--%>
-<%--              <div class="name">--%>
-<%--                <span class="title">Barotrauma</span>--%>
-<%--              </div>--%>
-<%--            </div>--%>
-<%--            <div class="price">17.29€</div>--%>
-<%--          </div>--%>
-<%--        </div>--%>
-<%--        <a href="/en/search/?cat[]=32" class="listing-dummy" title="Top indie games - View all"></a>--%>
-<%--      </div>--%>
-<%--    </div>--%>
-<%--  </div>--%>
-
   <div class="section categories">
     <div class="container">
       <div class="row">

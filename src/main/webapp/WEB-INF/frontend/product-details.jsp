@@ -43,13 +43,13 @@
           </div>
         </div>
         <div class="col-lg-6 align-self-center">
-          <h4>Call of Duty®: Modern Warfare® II</h4>
-          <span class="price"><em>$28</em> $22</span>
+          <h4>${p.name}</h4>
+          <span class="price">${p.price}</span>
           <p>LUGX Gaming Template is based on the latest Bootstrap 5 CSS framework. This template is provided by TemplateMo and it is suitable for your gaming shop ecommerce websites. Feel free to use this for any purpose. Thank you.</p>
-          <form id="qty">
+          <form method="post" action="/cart?action=add&id=${p.id}">
             <%--            <input type="qty" class="form-control" id="1" aria-describedby="quantity" placeholder="1" style="width: 70px;">--%>
-            <input type="number" name="" style="width: 80px;">
-              <a href="/cart?action=add&id=${p.id}"><button type="submit"><i style="margin-top: 30%" class="fa fa-shopping-bag"></i> ADD TO CART</button></a>
+            <input type="number" name="qty" value="1" style="width: 80px;">
+             <button type="submit"><i style="margin-top: 30%" class="fa fa-shopping-bag"></i> ADD TO CART</button>
           </form>
           <ul>
             <li><span>Game ID:</span> COD MMII</li>

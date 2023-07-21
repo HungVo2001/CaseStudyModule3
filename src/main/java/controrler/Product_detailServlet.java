@@ -26,9 +26,9 @@ public class Product_detailServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<Product> products = productService.findAll();
-
-        req.setAttribute("products", products);
+        long id = Long.parseLong(req.getParameter("id"));
+        Product product = productService.findById(id);
+        req.setAttribute("p", product);
         RequestDispatcher requestDispatcher = req.getRequestDispatcher(AppConfig.VIEW_FRONTEND + "product-details.jsp");
         requestDispatcher.forward(req, resp);
 
