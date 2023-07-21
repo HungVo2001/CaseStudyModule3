@@ -9,7 +9,7 @@
 
   <title>Lugx Gaming Template - Contact Page</title>
 
-  <jsp:include page="/layout/head_css.jsp"></jsp:include>
+  <jsp:include page="/WEB-INF/layout/head_css.jsp"></jsp:include>
 
 
 </head>
@@ -21,7 +21,7 @@
   <!-- ***** Preloader End ***** -->
 
   <!-- ***** Header Area Start ***** -->
-  <jsp:include page="/layout/header_js.jsp"></jsp:include>
+  <jsp:include page="/WEB-INF/layout/header_js.jsp"></jsp:include>
   <!-- ***** Header Area End ***** -->
 
   <div class="page-heading header-text">
@@ -64,30 +64,32 @@
                   </div>
                 </div>
                 <div class="price-container" data-select2-id="select2-data-9-7f0z">
-                  <div class="price">28.99€</div>
-                  <select class="wide selectable2 manual select2-hidden-accessible"
-                    data-select2-id="select2-data-1-mi7w" tabindex="-1" aria-hidden="true">
-                    <option value="0" disabled="disabled">0</option>
-                    <option value="1" data-select2-id="select2-data-3-bt80">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                    <option value="10">10</option>
-                  </select>
+                  <div class="price">${product.getPrice()}</div>
+                  <input type="number" name="" style="width: 80px;">
+<%--                  <select class="wide selectable2 manual select2-hidden-accessible"--%>
+<%--                    data-select2-id="select2-data-1-mi7w" tabindex="-1" aria-hidden="true">--%>
+<%--                    <option value="0" disabled="disabled">0</option>--%>
+<%--                    <option value="1" data-select2-id="select2-data-3-bt80">1</option>--%>
+<%--                    <option value="2">2</option>--%>
+<%--                    <option value="3">3</option>--%>
+<%--                    <option value="4">4</option>--%>
+<%--                    <option value="5">5</option>--%>
+<%--                    <option value="6">6</option>--%>
+<%--                    <option value="7">7</option>--%>
+<%--                    <option value="8">8</option>--%>
+<%--                    <option value="9">9</option>--%>
+<%--                    <option value="10">10</option>--%>
+<%--                  </select>--%>
+
                   <span class="select2 select2-container select2-container--default" dir="ltr"
                     data-select2-id="select2-data-2-v91o">
                     <span class="selection">
                       <span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true"
                         aria-expanded="false" tabindex="0" aria-disabled="false"
                         aria-labelledby="select2-v6kx-container" aria-controls="select2-v6kx-container">
-                        <span class="select2-selection__rendered" id="select2-v6kx-container" role="textbox"
-                          aria-readonly="true" title="1">1</span>
-                        <span class="select2-selection__arrow" role="presentation">
+<%--                        <span class="select2-selection__rendered" id="select2-v6kx-container" role="textbox"--%>
+<%--                          aria-readonly="true" title="1">1</span>--%>
+<%--                        <span class="select2-selection__arrow" role="presentation">--%>
                           <b role="presentation"></b>
                         </span>
                       </span>
@@ -139,9 +141,9 @@
 
   <div class="separator wide"></div>
 
-  <jsp:include page="/layout/footer_container.jsp"></jsp:include>
+  <jsp:include page="/WEB-INF/layout/footer_container.jsp"></jsp:include>
 
-  <jsp:include page="/layout/java_script.jsp"></jsp:include>
+  <jsp:include page="/WEB-INF/layout/java_script.jsp"></jsp:include>
 
 </body>
 

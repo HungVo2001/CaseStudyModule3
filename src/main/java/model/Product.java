@@ -18,8 +18,16 @@ public class Product {
     private int quantity;
 
     private String img;
-//    private ESize size;
 
+    private Action action;
+
+    public Action getAction() {
+        return action;
+    }
+
+    public void setAction(Action action) {
+        this.action = action;
+    }
 
     public Product() {
     }

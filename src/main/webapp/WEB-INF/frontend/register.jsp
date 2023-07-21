@@ -20,7 +20,7 @@
         <div class="fancybox-slide fancybox-slide--current fancybox-slide--html fancybox-slide--compxplete">
           <div class="loginbox-register open fancybox-content" style="display: flex;">
             <div class="row mx-3 my-3">
-              <a href="/WEB-INF/frontend/index.jsp" class="logo mb-5"><img src="/dashboard/asset/assets/images/logo.png" alt="" style="width: 158px; ;"></a>
+              <a href="/homes" class="logo mb-5"><img src="/dashboard/asset/assets/images/logo.png" alt="" style="width: 158px; ;"></a>
               <form class="row" method="post">
               <div class="col-6 mt-4 mb-3">
                 <input placeholder="Your Name:" name="name" required="">

@@ -14,4 +14,7 @@ public interface IProductService {
     void remove(long id);
 
     List<Product> findProducts(Pageable pageable);
+    List<Product> findAction();
+    List<Product> findLogic();
+    List<Product> findRacing();
 }

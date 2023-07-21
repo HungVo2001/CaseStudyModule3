@@ -6,19 +6,13 @@ import com.mysql.cj.Session;
 
 import appconfig.AppConfig;
 
-import model.ESize;
-import model.Pageable;
-import model.Product;
-import model.ProductType;
+import model.*;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.io.FilenameUtils;
-import service.IProductService;
-import service.IProductTypeService;
-import service.ProductServiceMysql;
-import service.ProductTypeServiceMysql;
+import service.*;
 import untils.ValidatesUntils;
 
 import javax.servlet.RequestDispatcher;
@@ -52,6 +46,8 @@ public class ProductServlet extends HttpServlet {
     private static final String UPLOAD_DIRECTORY = "C:\\codegym\\Module3\\ProductManager\\src\\main\\webapp\\frontend\\assets\\images";
     private IProductService productService = new ProductServiceMysql();
     private IProductTypeService productTypeService = new ProductTypeServiceMysql();
+
+    private UserService userService = new UserService();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -108,6 +104,8 @@ public class ProductServlet extends HttpServlet {
         readPageable(req,pageable);
 
         productService.findProducts(pageable);
+        User user = (User) req.getSession().getAttribute("user");
+
 
         List<Product> productList = productService.findProducts(pageable);
         req.setAttribute("products", productList);
@@ -199,7 +197,7 @@ public class ProductServlet extends HttpServlet {
         int quantity = Integer.parseInt(req.getParameter("quantity"));
         String img = req.getParameter("img");
 
-        String fileName = "\\frontend\\assets\\images\\" + img;
+        String fileName = "\\dashboard\\asset\\assets\\images\\" + img;
 
         String file = fileName.replace("\\","/");
 
@@ -260,8 +258,14 @@ public class ProductServlet extends HttpServlet {
         LocalDate createAt = LocalDate.now();
         int quantity = Integer.parseInt(req.getParameter("quantity"));
         String img = req.getParameter("img");
+
+        String fileName = "\\dashboard\\asset\\assets\\images\\" + img;
+
+
+        String file = fileName.replace("\\","/");
+
         product.setQuantity(quantity);
-        product.setImg(img);
+        product.setImg(file);
 
 
 //        long id = (long)(Math.random() * 10000);

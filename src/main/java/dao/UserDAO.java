@@ -49,7 +49,7 @@ public class UserDAO extends DbContext{
             statement.setString(3, user.getPhone());
             statement.setString(4,user.getAddress());
             statement.setString(5,user.getImg());
-            statement.setInt(6, user.getId());
+            statement.setLong(6, user.getId());
             int rowsUpdated = statement.executeUpdate();
             if (rowsUpdated > 0) {
                 return true;
@@ -87,7 +87,7 @@ public class UserDAO extends DbContext{
         try {
             PreparedStatement statement = getConnection().prepareStatement(UPDATE_PASSWORD);
             statement.setString(1, user.getPassword());
-            statement.setInt(2, user.getId());
+            statement.setLong(2, user.getId());
             int rowsUpdated = statement.executeUpdate();
             if (rowsUpdated > 0) {
                 return true;

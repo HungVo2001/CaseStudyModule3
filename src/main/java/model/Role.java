@@ -1,6 +1,8 @@
 package model;
 
 public enum Role {
-    AMDIN,
+    ADMIN,
     USER
+
+
 }

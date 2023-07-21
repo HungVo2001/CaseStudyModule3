@@ -10,6 +10,27 @@ public class Cart {
 
     private double total;
 
+    private long idUser;
+
+    public long getIdUser() {
+        return idUser;
+    }
+
+    public Cart(long id, LocalDate createAt, double total, long idUser) {
+        this.id = id;
+        this.createAt = createAt;
+        this.total = total;
+        this.idUser = idUser;
+    }
+    public Cart(LocalDate createAt, double total, long idUser) {
+        this.createAt = createAt;
+        this.total = total;
+        this.idUser = idUser;
+    }
+
+    public void setIdUser(long idUser) {
+        this.idUser = idUser;
+    }
 
     public Cart() {
     }
@@ -18,6 +39,11 @@ public class Cart {
         this.id = id;
         this.createAt = createAt;
         this.cartItems = cartItems;
+        this.total = total;
+    }
+    public Cart(long id, LocalDate createAt, double total) {
+        this.id = id;
+        this.createAt = createAt;
         this.total = total;
     }
 

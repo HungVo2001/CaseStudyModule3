@@ -1,7 +1,7 @@
 package model;
 
 public class User {
-    private int id;
+    private long id;
 
     private String username;
 
@@ -20,7 +20,7 @@ public class User {
     public User() {
     }
 
-    public User(int id, String username, String password, String email, String fullname, String phone, Role role, String address, String img) {
+    public User(long id, String username, String password, String email, String fullname, String phone, Role role, String address, String img) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -32,7 +32,17 @@ public class User {
         this.img = img;
     }
 
-    public User(int id, String username, String password, String email, String fullname, String phone, String address, String img) {
+    public User(long id, String username, String password, String email, String fullname, String phone, String address, Role role) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.fullname = fullname;
+        this.phone = phone;
+        this.address = address;
+        this.role = role;
+    }
+    public User(long id, String username, String password, String email, String fullname, String phone, String address, String img) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -43,26 +53,18 @@ public class User {
         this.img = img;
     }
 
-    public User(int idDB, String usernameDB, String passwordDB, String email, String fullname, String phone, String address) {
-        this.id = idDB;
-        this.username = usernameDB;
-        this.password = passwordDB;
-        this.email = email;
-        this.fullname = fullname;
-        this.phone = phone;
-        this.address = address;
-    }
+
 
     public User(String username, String password) {
         this.username = username;
         this.password = password;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

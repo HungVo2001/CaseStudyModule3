@@ -24,6 +24,12 @@ public class ProductServiceMysql extends DbContext implements IProductService{
     private static final String SQL_FILTER_PRODUCTS_COUNT = "SELECT count(*) as total \n" +
             "FROM products p join product_type pt on p.id_product_type = pt.id \n" +
             "where (p.name like ? or p.price like ? or p.quantity like ?) %s \n";
+    private static final String FIND_ALL_PRODUCTS_ACTION = "SELECT p.*, pt.id as id_cate, pt.name as name_cate " +
+            "FROM products p join product_type pt on p.id_product_type = pt.id where pt.name = 'ACTION'";
+    private static final String FIND_ALL_PRODUCTS_LOGIC = "SELECT p.*, pt.id as id_cate, pt.name as name_cate " +
+            "FROM products p join product_type pt on p.id_product_type = pt.id where pt.name = 'LOGIC'";
+    private static final String FIND_ALL_PRODUCTS_RACING = "SELECT p.*, pt.id as id_cate, pt.name as name_cate " +
+            "FROM products p join product_type pt on p.id_product_type = pt.id where pt.name = 'RACING'";
 
     @Override
     public List<Product> findAll() {
@@ -249,5 +255,85 @@ public class ProductServiceMysql extends DbContext implements IProductService{
         return products;
     }
 
+    @Override
+    public List<Product> findAction() {
+        List<Product> products = new ArrayList<>();
+        try {
+            Connection connection = getConnection();
+            PreparedStatement preparedStatement  = connection.prepareStatement(FIND_ALL_PRODUCTS_ACTION); //Trả về 1 tập các câu lệnh nen dùng executeQuery()
+
+            System.out.println("findAll: " + preparedStatement);
+            ResultSet rs = preparedStatement.executeQuery(); // Khi trả về 1 hoặc nhiều dòng
+
+            //rs.next() kiểm tra xem có dòng tiếp theo không
+            while (rs.next()){
+
+                Product product = getProductFromResulSet(rs);
+
+
+
+                products.add(product);
+            }
+            connection.close();
+        }catch (SQLException exception){
+            printSQLException(exception);
+        }
+
+        return products;
+    }
+
+    @Override
+    public List<Product> findLogic() {
+        List<Product> products = new ArrayList<>();
+        try {
+            Connection connection = getConnection();
+            PreparedStatement preparedStatement  = connection.prepareStatement(FIND_ALL_PRODUCTS_LOGIC); //Trả về 1 tập các câu lệnh nen dùng executeQuery()
+
+            System.out.println("findAll: " + preparedStatement);
+            ResultSet rs = preparedStatement.executeQuery(); // Khi trả về 1 hoặc nhiều dòng
+
+            //rs.next() kiểm tra xem có dòng tiếp theo không
+            while (rs.next()){
+
+                Product product = getProductFromResulSet(rs);
+
+
+
+                products.add(product);
+            }
+            connection.close();
+        }catch (SQLException exception){
+            printSQLException(exception);
+        }
+
+        return products;
+    }
+
+    @Override
+    public List<Product> findRacing() {
+        List<Product> products = new ArrayList<>();
+        try {
+            Connection connection = getConnection();
+            PreparedStatement preparedStatement  = connection.prepareStatement(FIND_ALL_PRODUCTS_RACING); //Trả về 1 tập các câu lệnh nen dùng executeQuery()
+
+            System.out.println("findAll: " + preparedStatement);
+            ResultSet rs = preparedStatement.executeQuery(); // Khi trả về 1 hoặc nhiều dòng
+
+            //rs.next() kiểm tra xem có dòng tiếp theo không
+            while (rs.next()){
+
+                Product product = getProductFromResulSet(rs);
+
+
+
+                products.add(product);
+            }
+            connection.close();
+        }catch (SQLException exception){
+            printSQLException(exception);
+        }
+
+        return products;
+    }
 
 }

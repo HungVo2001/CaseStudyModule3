@@ -9,4 +9,55 @@ public class CartItem {
 
     private BigDecimal price;
     private int quantity;
+
+    public CartItem() {
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public long getIdProduct() {
+        return idProduct;
+    }
+
+    public void setIdProduct(long idProduct) {
+        this.idProduct = idProduct;
+    }
+
+    public long getIdCart() {
+        return idCart;
+    }
+
+    public void setIdCart(long idCart) {
+        this.idCart = idCart;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public CartItem(long id, long idProduct, long idCart, BigDecimal price, int quantity) {
+        this.id = id;
+        this.idProduct = idProduct;
+        this.idCart = idCart;
+        this.price = price;
+        this.quantity = quantity;
+    }
 }

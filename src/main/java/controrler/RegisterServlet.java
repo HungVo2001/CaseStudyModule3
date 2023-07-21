@@ -1,6 +1,7 @@
 package controrler;
 
 import appconfig.AppConfig;
+import model.Role;
 import model.User;
 import service.IUserService;
 import service.UserService;
@@ -28,6 +29,7 @@ public class RegisterServlet extends HttpServlet {
         String password = req.getParameter("password");
         if (userService.findUserByUserName(username) == null) {
             User user = new User(username, password);
+            user.setRole(Role.USER);
             userService.createUser(user);
             req.getSession().setAttribute("user", user);
             resp.sendRedirect("/homes");

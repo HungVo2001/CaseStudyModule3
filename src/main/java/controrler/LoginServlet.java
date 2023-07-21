@@ -1,6 +1,7 @@
 package controrler;
 
 import appconfig.AppConfig;
+import model.Role;
 import model.User;
 import service.IUserService;
 import service.UserService;
@@ -30,9 +31,17 @@ public class LoginServlet extends HttpServlet {
         User user = userService.findUserByUserName(username);
         if (user != null && PasswordUtils.isValidPassword(password, user.getPassword())) {
             req.getSession().setAttribute("user", user);
-            req.getSession().setAttribute("nane", user.getUsername());
-            resp.sendRedirect("/homes");
+//            resp.sendRedirect("/home");
+            boolean isAdmin = user.getRole() == Role.ADMIN;
+            if (isAdmin) {
+                resp.sendRedirect("/products");
+            }
+            boolean isUser = user.getRole() == Role.USER;
+            if (isUser) {
+                resp.sendRedirect("/homes");
+            }
         }else {
+            // thêm các message lỗi vào đây
             req.getRequestDispatcher(AppConfig.VIEW_FRONTEND + "login.jsp").forward(req, resp);
         }
 
