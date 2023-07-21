@@ -74,6 +74,14 @@ public class CartService extends DbContext implements ICartService{
         return cart;
     }
 
+    private double calculateTotal(List<Cart> cartItems) {
+        double total = 0.0;
+        for (Cart item : cartItems) {
+            total += item.getTotal();
+        }
+        return total;
+    }
+
     @Override
     public Cart updateCart(Cart cart) {
 //        Connection connection = getConnection();

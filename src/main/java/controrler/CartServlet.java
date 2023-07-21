@@ -2,6 +2,7 @@ package controrler;
 
 import appconfig.AppConfig;
 import model.Cart;
+import model.CartItem;
 import model.Product;
 import model.User;
 import service.CartService;
@@ -44,6 +45,7 @@ public class CartServlet extends HttpServlet {
                 showCartView(req, resp);
         }
     }
+
     private void updateCartView(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         User user = (User) req.getSession().getAttribute("user");
         if (user == null) {
