@@ -570,8 +570,9 @@
                         <th>Type</th>
                         <th>Price</th>
                         <th>CreateAt</th>
-                        <th>Size</th>
+                        <th>Quantity</th>
                         <th>UpdateAt</th>
+                        <th>Img</th>
                         <th>Action</th>
                       </tr>
                       </thead>
@@ -583,8 +584,9 @@
                           <td>${c.getProductType().getName()}</td>
                           <td>${c.getPrice()}</td>
                           <td>${c.getCreateAt()}</td>
-                          <td>${c.getSize().getName()}</td>
+                          <td type="number">${c.getQuantity()}</td>
                           <td>${c.getUpdateAt()}</td>
+                          <td><img src="${c.getImg()}"></td>
                           <td>
                             <a href="/products?action=edit&id=${c.getId()}"><i class="fa fa-edit"></i></a>
                             <a href="javascript:void(0)" onclick="handleDeleteClick(${c.getId()}, '${c.getName()}')">

@@ -21,7 +21,7 @@
 
                             <% if (session.getAttribute("user") != null) { %>
                             <div class="right-items">
-                                <li><a href="#">${sessionScope.user.getName()}</a></li>
+                                <li><a href="/user">${sessionScope.user.getUsername()}</a></li>
                             </div>
                             <div class="right-items">
                                 <li><a href="/logout">Logout</a></li>

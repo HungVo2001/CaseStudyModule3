@@ -8,9 +8,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <title>Lugx Gaming Template - Contact Page</title>
+  <link rel="shortcut icon" type="image/x-icon" href="\frontend\assets\img\favicon.png">
+
+  <!-- all css here -->
+  <link rel="stylesheet" href="\frontend\assets\css\bootstrap.min.css">
+  <link rel="stylesheet" href="\frontend\assets\css\plugin.css">
+  <link rel="stylesheet" href="\frontend\assets\css\bundle.css">
+  <link rel="stylesheet" href="\frontend\assets\css\style.css">
+  <link rel="stylesheet" href="\frontend\assets\css\responsive.css">
 
   <jsp:include page="/WEB-INF/layout/head_css.jsp"></jsp:include>
-
+  <style>
+    .cart{
+      padding: 20px;
+    }
+    table{
+      color: white;
+    }
+  </style>
 
 </head>
 
@@ -28,8 +43,8 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-12">
-          <h3>Contact Us</h3>
-          <span class="breadcrumb"><a href="#">Home</a> > Contact Us</span>
+          <h3>CART</h3>
+          <span class="breadcrumb"><a href="/homes">Home</a> > CART</span>
         </div>
       </div>
     </div>
@@ -40,62 +55,44 @@
       <div class="cartpage-left">
         <div class="cartpage-section" data-select2-id="select2-data-13-9tyk">
           <h2>Cart</h2>
-          <div class="cart-listing" data-select2-id="select2-data-12-kkm5">
-            <div class="cart-item" data-select2-id="select2-data-11-d37n">
-              <div class="item-container" data-select2-id="select2-data-10-xtlc">
-                <a href="../../dashboard/asset/assets/images/single-game.jpg" class="cover">
-                  <picture>
-                    <img alt="Six Days in fallu" src="../../dashboard/asset/assets/images/single-game.jpg" loading="lazy">
-                  </picture>
-                </a>
-                <div class="information">
-                  <div class="name">
-                    <div class="platform platform-steam">
-                      <div> <img class="icon-steam" src="../../dashboard/asset/assets/images/steam.png" alt=""></div>
+          <div class="shopping_cart_area">
+            <form action="#">
+              <div class="row">
+                <div class="col-12">
+                  <div class="table_desc">
+                    <div class="cart_page table-responsive">
+                      <table>
+                        <thead>
+                        <tr>
+                          <th class="cart product_remove">Delete</th>
+                          <th class="cart product_thumb">Image</th>
+                          <th class="cart product_name">Product</th>
+                          <th class="cart product-price">Price</th>
+                          <th class="cart product_quantity">Quantity</th>
+                          <th class="cart product_total">Total</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        <c:forEach items="${requestScope.cart.getCartItems()}" var="cartItem">
+                          <tr>
+                            <td class="cart product_remove"><a href="/cart?action=delete&id=${cartItem.id}"><i class="fa fa-trash-o"></i>xoa</a></td>
+                            <td class="cart product_thumb"><img style="width: 100px;height: 100px" src="${cartItem.product.img}"></td>
+                            <td class="cart product_name">${cartItem.product.name}</td>
+                            <td class="cart product-price">${cartItem.price}</td>
+                            <td class="cart product_quantity"><input  onchange="handleQuantityChange(this, ${cartItem.product.id})" min="0" max="100" type="number" value="${cartItem.quantity}"></td>
+                            <td class="cart product_total">${cartItem.price*cartItem.quantity} VND</td>
+                          </tr>
+                        </c:forEach>
+
+
+                        </tbody>
+                      </table>
                     </div>
-                    <span title="Six Days in Fallujah" class="title">Six Days in Fallujah</span>
                   </div>
-                  <div class="type">Steam</div>
-                  <div class="actions">
-                    <a class="deleteItem">
-                      <i class="delete fa-regular fa-trash-can"></i>
-                    </a>
-                  </div>
-                </div>
-                <div class="price-container" data-select2-id="select2-data-9-7f0z">
-                  <div class="price"></div>
-                  <select class="wide selectable2 manual select2-hidden-accessible"
-                    data-select2-id="select2-data-1-mi7w" tabindex="-1" aria-hidden="true">
-                    <option value="0" disabled="disabled">0</option>
-                    <option value="1" data-select2-id="select2-data-3-bt80">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                    <option value="10">10</option>
-                  </select>
-                  <span class="select2 select2-container select2-container--default" dir="ltr"
-                    data-select2-id="select2-data-2-v91o">
-                    <span class="selection">
-                      <span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true"
-                        aria-expanded="false" tabindex="0" aria-disabled="false"
-                        aria-labelledby="select2-v6kx-container" aria-controls="select2-v6kx-container">
-                        <span class="select2-selection__rendered" id="select2-v6kx-container" role="textbox"
-                          aria-readonly="true" title="1">1</span>
-                        <span class="select2-selection__arrow" role="presentation">
-                          <b role="presentation"></b>
-                        </span>
-                      </span>
-                    </span>
-                    <span class="dropdown-wrapper" aria-hidden="true"></span>
-                  </span>
                 </div>
               </div>
-            </div>
+            </form>
           </div>
         </div>
         <div class="separator"></div>
@@ -103,17 +100,9 @@
       <div class="cartpage-right">
         <h2>Summary</h2>
         <div class="cart-summary">
-          <div class="summary-row">
-            <span>Official price</span>
-            <span>38.99€</span>
-          </div>
-          <div class="summary-row">
-            <span>Discount</span>
-            <span>-10€</span>
-          </div>
-          <div class="summary-row">
-            <span>Subtotal</span>
-            <span>28.99€</span>
+          <div class="price_indiv d-flex justify-content-between" style="padding-bottom: 30px">
+            <p>Total</p>
+            <p><span id="product_total_amt">${String.format("%.0f",cartItem.total)}</span> VNĐ</p>
           </div>
           <a class="button gotopayment">Go to payment
             <div><i class="fa-solid fa-greater-than"></i></div>
@@ -142,6 +131,26 @@
 
   <jsp:include page="/WEB-INF/layout/java_script.jsp"></jsp:include>
 
+  <script>
+    function handleQuantityChange(eQuantity, idProduct){
+      let url = `/cart?action=update&id=\${idProduct}&quantity=\${eQuantity.value}`;
+
+      window.location.assign(url);
+    }
+    function formatPrice(price) {
+      return price.toLocaleString('vi-VN', {style: 'currency', currency: 'VND'});
+    }
+    function deleteCartItemIfQuantityEqualZero(idProduct) {
+
+    }
+  </script>
+  <script src="\frontend\assets\js\vendor\modernizr-2.8.3.min.js"></script>
+  <script src="\frontend\assets\js\vendor\jquery-1.12.0.min.js"></script>
+  <script src="\frontend\assets\js\popper.js"></script>
+  <script src="\frontend\assets\js\bootstrap.min.js"></script>
+  <script src="\frontend\assets\js\ajax-mail.js"></script>
+  <script src="\frontend\assets\js\plugins.js"></script>
+  <script src="\frontend\assets\js\main.js"></script>
 </body>
 
 </html>

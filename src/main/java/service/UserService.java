@@ -1,5 +1,7 @@
 package service;
 
+import dao.DbContext;
+import model.Role;
 import model.User;
 import untils.PasswordUtils;
 
@@ -21,15 +23,16 @@ public class UserService extends DbContext implements IUserService {
             System.out.println("findUserByUserName: " + ps);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                int idDB = rs.getInt("id");
+                long idDB = rs.getLong("id");
                 String usernameDB = rs.getString("name");
                 String passwordDB = rs.getString("password");
                 String email = rs.getString("email");
                 String fullname = rs.getString("fullname");
                 String phone = rs.getString("phone");
                 String address = rs.getString("address");
-
-                return new User(idDB, usernameDB, passwordDB, email, fullname, phone,address);
+                String strRole = rs.getString("role");
+                Role role = Role.valueOf(strRole);
+                return new User(idDB, usernameDB, passwordDB, email, fullname, phone,address,role);
             }
         } catch (SQLException sqlException) {
             printSQLException(sqlException);
@@ -45,7 +48,7 @@ public class UserService extends DbContext implements IUserService {
             String strPass = PasswordUtils.hashPassword(user.getPassword());
             PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO `user` (`name`, `password`) VALUES (?, ?)");
 
-            preparedStatement.setString(1, user.getName());
+            preparedStatement.setString(1, user.getUsername());
             preparedStatement.setString(2, strPass);
 
             System.out.println("createUser: " +  preparedStatement);
@@ -57,6 +60,21 @@ public class UserService extends DbContext implements IUserService {
 
     @Override
     public void updateUser(long id, User user) {
-
+        try{
+            Connection connection =getConnection();
+//
+            PreparedStatement pr = connection.prepareStatement("UPDATE `user` SET `fullname` = ?, `email` = ?, `phone` = ?, `address` = ? WHERE `id` = ?");
+            pr.setString(1, user.getFullname());
+            pr.setString(2, user.getEmail());
+            pr.setString(3, user.getPhone());
+            pr.setString(4,user.getAddress());
+            pr.setLong(5, id);
+            System.out.println("update: " + pr);
+            pr.executeUpdate();
+            connection.close();
+        }catch (SQLException e){
+            printSQLException(e);
+        }
     }
+
 }

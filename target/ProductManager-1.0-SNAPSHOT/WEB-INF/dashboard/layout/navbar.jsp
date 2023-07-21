@@ -1,6 +1,7 @@
 <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
   <div class="text-center navbar-brand-wrapper d-flex align-items-top justify-content-center">
     <a class="navbar-brand brand-logo" href="\dashboard\assets\index.html"><img src="\dashboard\assets\images\logo.svg" alt="logo"></a>
+    <a href="#" title="Home" class="logo-ig logo-m"></a>
     <a class="navbar-brand brand-logo-mini" href="\dashboard\assets\index.html"><img src="\dashboard\assets\images\logo-mini.svg" alt="logo"></a>
   </div>
   <div class="navbar-menu-wrapper d-flex align-items-center">
@@ -23,9 +24,9 @@
             Admin User
           </a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">
+          <a class="dropdown-item" href="/homes">
             <i class="icon-docs text-success"></i>
-            Sales report
+            Home Game
           </a>
         </div>
       </li>

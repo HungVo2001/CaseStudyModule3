@@ -566,7 +566,12 @@
                                             <div class="form-group">
                                                 <label for="exampleInputUpdateAt1">CreateAt</label>
                                                 <%--                        <input type="updateAt" class="form-control" id="exampleInputUpdateAt1" placeholder="UpdateAt">--%>
-                                                <input type="createAt" class="form-control" name="createAt" id="exampleInputUpdateAt1" placeholder="UpdateAt" value="${product.getCreateAt()}"/>
+                                                <input type="date" class="form-control" name="createAt" id="exampleInputUpdateAt1" placeholder="UpdateAt" value="${product.getCreateAt()}"/>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputQuantity1">Quantity</label>
+
+                                                <input type="quantity" class="form-control" name="quantity" id="exampleInputQuantity1" placeholder="Quantity" value="${product.getQuantity()}"/>
                                             </div>
                                             <div class="form-group">
                                                 <label for="">Type</label>
@@ -581,13 +586,18 @@
                                                     </c:forEach>
                                                 </select>
                                             </div>
+<%--                                            <div class="form-group">--%>
+<%--                                                <label for="">Size: </label>--%>
+<%--                                                <select name="size">--%>
+<%--                                                    <c:forEach items="${requestScope.sizes}" var="size">--%>
+<%--                                                        <option ${product.getSize().getId() == size.getId() ? 'selected' : ''} value="${size.getId()}">${size.getName()}</option>--%>
+<%--                                                    </c:forEach>--%>
+<%--                                                </select>--%>
+<%--                                            </div>--%>
                                             <div class="form-group">
-                                                <label for="">Size: </label>
-                                                <select name="size">
-                                                    <c:forEach items="${requestScope.sizes}" var="size">
-                                                        <option ${product.getSize().getId() == size.getId() ? 'selected' : ''} value="${size.getId()}">${size.getName()}</option>
-                                                    </c:forEach>
-                                                </select>
+                                                <label for="exampleInputImg1">Img</label>
+
+                                                <input type="file" class="form-control" name="img" id="exampleInputImg1" placeholder="Img" value="${product.getImg()}"/>
                                             </div>
                                             <button type="submit" class="btn btn-success mr-2">Create</button>
                                             <%--                      <button class="btn btn-light">Cancel</button>--%>

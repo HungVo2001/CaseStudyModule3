@@ -1,13 +1,13 @@
-package service;
+package dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DbContext {
-    protected String jdbcURL = "jdbc:mysql://localhost:3306/product_manager?useSSL=false";
-    protected String jdbcUsername = "root";
-    protected String jdbcPassword = "Nqb.151104";
+    protected static String jdbcURL = "jdbc:mysql://localhost:3306/product_manager2?useSSL=false";
+    protected static String jdbcUsername = "root";
+    protected static String jdbcPassword = "Nqb.151104";
 
     public void printSQLException(SQLException ex) {
         for (Throwable e : ex) {
@@ -25,7 +25,7 @@ public class DbContext {
         }
     }
 
-    public Connection getConnection() {
+    public static Connection getConnection() {
         Connection connection = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");

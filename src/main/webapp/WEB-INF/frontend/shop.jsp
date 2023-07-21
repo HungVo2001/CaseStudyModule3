@@ -26,7 +26,7 @@
       <div class="row">
         <div class="col-lg-12">
           <h3>Our Shop</h3>
-          <span class="breadcrumb"><a href="#">Home</a> > Our Shop</span>
+          <span class="breadcrumb"><a href="/homes">Home</a> > Our Shop</span>
         </div>
       </div>
     </div>

@@ -3,8 +3,14 @@
   <component name="WebContextManager">
     <option name="state">
       <map>
+<<<<<<< HEAD
         <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/frontend/index.jsp" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/frontend" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/frontend/shop.jsp" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/frontend" />
+=======
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/dashboard/products/create.jsp" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/dashboard/products" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/dashboard/products/list.jsp" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/dashboard/products" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/frontend/product-details.jsp" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/frontend" />
+>>>>>>> origin/hung_dev
         <entry key="file://$PROJECT_DIR$/src/main/webapp/products/edit.jsp" value="file://$PROJECT_DIR$/src/main/webapp/products" />
       </map>
     </option>

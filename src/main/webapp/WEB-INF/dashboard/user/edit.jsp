@@ -195,7 +195,7 @@
                     <li class="nav-item nav-profile">
                         <div class="nav-link">
                             <div class="profile-image">
-                                <img src="\dashboard\assets\images\faces\face10.jpg" alt="image">
+                                <img src="/products/images.jpg" alt="image">
                                 <span class="online-status online"></span> <!--change class online to offline or busy as needed-->
                             </div>
                             <div class="profile-name">
@@ -512,101 +512,128 @@
             </nav>
             <!-- partial -->
             <div class="content-wrapper">
-                <div class="row">
-                    <div class="col-md-6 offset-3 d-flex align-items-stretch grid-margin">
-                        <div class="row flex-grow">
-                            <div class="col-12 grid-margin">
+                <div class="row user-profile">
+                    <div class="col-lg-4 side-left d-flex align-items-stretch">
+                        <div class="row">
+                            <div class="col-12 grid-margin stretch-card">
                                 <div class="card">
-                                    <div class="card-body">
-                                        <h4 class="card-title">Default form</h4>
-                                        <p class="card-description">
-                                            Basic form layout
-                                        </p>
-                                        <c:if test="${requestScope.errors != null}">
-                                            <div class="alert alert-danger">
-                                                <ul>
-                                                    <c:forEach items="${requestScope.errors}" var="e">
-                                                        <li>${e}</li>
-                                                    </c:forEach>
-                                                </ul>
-                                            </div>
-                                        </c:if>
-                                        <c:if test="${requestScope.message !=null}">
-                                            <script>
-
-
-                                                window.onload = ()=>{
-                                                    Swal.fire({
-                                                        position: 'top-end',
-                                                        icon: 'success',
-                                                        title: 'Thêm thành công',
-                                                        showConfirmButton: false,
-                                                        timer: 1500
-                                                    })
-                                                }
-                                            </script>
-                                        </c:if>
-                                        <form class="forms-sample" method="post" action="/products?action=create">
-<%--                                            <input type="hidden" name="id" value="${product.getId()}">--%>
-                                            <div class="form-group">
-                                                <label for="exampleInputName1">Name</label>
-                                                <%--                        <input value="${product.getName()}" type="name" class="form-control" id="exampleInputName1" placeholder="Name">--%>
-                                                <input type="name" class="form-control" name = "name" id="exampleInputName1" placeholder="Name" value="${product.getName()}"/>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="exampleInputDescription1">Description</label>
-                                                <%--                        <input value="${product.getDescription()}" type="description" class="form-control" id="exampleInputDescription1" placeholder="Description">--%>
-                                                <input type="description" class="form-control" name="description" id="exampleInputDescription1" placeholder="Description" value="${product.getDescription()}"/>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="exampleInputPrice1">Price</label>
-                                                <%--                        <input value="${product.getPrice()}" type="price" class="form-control" id="exampleInputPrice1" placeholder="Price">--%>
-                                                <input type="price" class="form-control" name="price" id="exampleInputPrice1" placeholder="Price" value="${product.getPrice()}"/>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="exampleInputUpdateAt1">CreateAt</label>
-                                                <%--                        <input type="updateAt" class="form-control" id="exampleInputUpdateAt1" placeholder="UpdateAt">--%>
-                                                <input type="date" class="form-control" name="createAt" id="exampleInputUpdateAt1" placeholder="UpdateAt" value="${product.getCreateAt()}"/>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="exampleInputQuantity1">Quantity</label>
-
-                                                <input type="quantity" class="form-control" name="quantity" id="exampleInputQuantity1" placeholder="Quantity" value="${product.getQuantity()}"/>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="">Type</label>
-                                                <%--                        <input value="" type="type" class="form-control" id="exampleInputType1" placeholder="Type">--%>
-                                                <select name="product-type">
-                                                    <c:forEach items="${requestScope.productTypes}" var="pt">
-                                                        <option
-                                                            ${ product.getProductType().getId() == pt.getId() ? 'selected' : '' }
-                                                                value="${pt.getId()}"
-                                                        >
-                                                                ${pt.getName()}</option>
-                                                    </c:forEach>
-                                                </select>
-                                            </div>
-<%--                                            <div class="form-group">--%>
-<%--                                                <label for="">Size: </label>--%>
-<%--                                                <select name="size">--%>
-<%--                                                    <c:forEach items="${requestScope.sizes}" var="size">--%>
-<%--                                                        <option ${product.getSize().getId() == size.getId() ? 'selected' : ''} value="${size.getId()}">${size.getName()}</option>--%>
-<%--                                                    </c:forEach>--%>
-<%--                                                </select>--%>
-<%--                                            </div>--%>
-                                            <div class="form-group">
-                                                <label for="exampleInputImg1">Img</label>
-
-                                                <input type="file" class="form-control" name="img" id="exampleInputImg1" placeholder="Img" value="${product.getImg()}"/>
-                                            </div>
-                                            <button type="submit" class="btn btn-success mr-2">Create</button>
-                                            <%--                      <button class="btn btn-light">Cancel</button>--%>
-                                            <a href="/products"><button type="button" class="btn btn-light">Back</button></a>
-                                        </form>
+                                    <div class="card-body avatar">
+                                        <h4 class="card-title">Info</h4>
+                                        <img src="..\..\images\faces\face6.jpg" alt="">
+                                        <p class="name">John Doe</p>
+                                        <p class="designation">-  UI/UX  -</p>
+                                        <a class="d-block text-center text-dark" href="#">johndoe@gmail.com</a>
+                                        <a class="d-block text-center text-dark" href="#">+1 9438 934089</a>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-12 stretch-card">
+                                <div class="card">
+                                    <div class="card-body overview">
+                                        <ul class="achivements">
+                                            <li><p>34</p><p>Projects</p></li>
+                                            <li><p>23</p><p>Task</p></li>
+                                            <li><p>29</p><p>Completed</p></li>
+                                        </ul>
+                                        <div class="wrapper about-user">
+                                            <h4 class="card-title mt-4 mb-3">About</h4>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veniam consectetur ex quod.</p>
+                                        </div>
+                                        <div class="info-links">
+                                            <a class="website" href="http://urbanui.com/">
+                                                <i class="mdi mdi-earth text-gray"></i>
+                                                <span>http://urbanui.com/</span>
+                                            </a>
+                                            <a class="social-link" href="#">
+                                                <i class="mdi mdi-facebook text-gray"></i>
+                                                <span>https://www.facebook.com/johndoe</span>
+                                            </a>
+                                            <a class="social-link" href="#">
+                                                <i class="mdi mdi-linkedin text-gray"></i>
+                                                <span>https://www.linkedin.com/johndoe</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-8 side-right stretch-card">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="wrapper d-block d-sm-flex align-items-center justify-content-between">
+                                    <h4 class="card-title mb-0">Details</h4>
+                                    <ul class="nav nav-tabs tab-solid tab-solid-primary mb-0" id="myTab" role="tablist">
+                                        <li class="nav-item">
+                                            <a class="nav-link active" id="info-tab" data-toggle="tab" href="#info" role="tab" aria-controls="info" aria-expanded="true">Info</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" id="avatar-tab" data-toggle="tab" href="#avatar" role="tab" aria-controls="avatar">Avatar</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" id="security-tab" data-toggle="tab" href="#security" role="tab" aria-controls="security">Security</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="wrapper">
+                                    <hr>
+                                    <div class="tab-content" id="myTabContent">
+                                        <div class="tab-pane fade show active" id="info" role="tabpanel" aria-labelledby="info">
+                                            <form method="post" >
+                                                <div class="form-group">
+                                                    <label for="name">Name</label>
+                                                    <input type="text" name="username" class="form-control" id="name" placeholder="Change user name">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="designation">Full Name</label>
+                                                    <input type="text" name="fullname" class="form-control" id="designation" placeholder="Change designation">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="mobile">Mobile Number</label>
+                                                    <input type="text" name="phone" class="form-control" id="mobile" placeholder="Change mobile number">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="email">Email</label>
+                                                    <input type="email" name="email" class="form-control" id="email" placeholder="Change email address">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="address">Address</label>
+                                                    <input type="text" name="address" class="form-control" id="address" placeholder="Change email address">
+                                                </div>
+
+
+                                            </form>
+                                        </div><!-- tab content ends -->
+                                        <div class="tab-pane fade" id="avatar" role="tabpanel" aria-labelledby="avatar-tab">
+                                            <div class="wrapper mb-5 mt-4">
+                                                <span class="badge badge-warning text-white">Note : </span>
+                                                <p class="d-inline ml-3 text-muted">Image size is limited to not greater than 1MB .</p>
+                                            </div>
+                                            <form action="#">
+                                                <div class="dropify-wrapper has-preview"><div class="dropify-message"><span class="file-icon"></span> <p>Drag and drop a file here or click</p><p class="dropify-error">Ooops, something wrong appended.</p></div><div class="dropify-loader" style="display: none;"></div><div class="dropify-errors-container"><ul></ul></div><input type="file" class="dropify" data-max-file-size="1mb" data-default-file="../../images/faces/face6.jpg"><button type="button" class="dropify-clear">Remove</button><div class="dropify-preview" style="display: block;"><span class="dropify-render"><img src="../../images/faces/face6.jpg"></span><div class="dropify-infos"><div class="dropify-infos-inner"><p class="dropify-filename"><span class="file-icon"></span> <span class="dropify-filename-inner">face6.jpg</span></p><p class="dropify-infos-message">Drag and drop or click to replace</p></div></div></div></div>
+                                                <div class="form-group mt-5">
+                                                    <button type="submit" class="btn btn-success mr-2">Update</button>
+                                                    <button class="btn btn-outline-danger">Cancel</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="tab-pane fade" id="security" role="tabpanel" aria-labelledby="security-tab">
+                                            <form action="#">
+                                                <div class="form-group">
+                                                    <label for="change-password">Change password</label>
+                                                    <input type="password" class="form-control" id="change-password" placeholder="Enter you current password">
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="password" class="form-control" id="new-password" placeholder="Enter you new password">
+                                                </div>
+                                                <div class="form-group mt-5">
+                                                    <button type="submit" class="btn btn-success mr-2">Save</button>
+                                                    <button class="btn btn-outline-danger">Cancel</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -622,6 +649,35 @@
     <!-- page-body-wrapper ends -->
 </div>
 <jsp:include page="/WEB-INF/dashboard/layout/js_footer.jsp"></jsp:include>
+<script>
+
+
+    function handleDeleteClick(id, name){
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "Bạn có muốn xóa " + name + " hay ko",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            console.log(result);
+            if (result.isConfirmed) {
+                location.assign("/products?action=delete&id=" + id);
+            }
+        })
+    }
+</script>
 </body>
 
 </html>
+
+
+
+
+
+
+
+
+

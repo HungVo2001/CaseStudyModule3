@@ -15,64 +15,44 @@ public class Product {
      private ProductType productType;
 
      private Instant updateAt;
-    private ESize size;
+    private int quantity;
 
+    private String img;
 
-    public Product(long id, String name, String description, BigDecimal price, LocalDate createAt, int idProductType, ProductType productType, Instant updateAt, ESize size) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.price = price;
-        this.createAt = createAt;
-        this.idProductType = idProductType;
-        this.productType = productType;
-        this.updateAt = updateAt;
-        this.size = size;
+    private Action action;
+
+    public Action getAction() {
+        return action;
+    }
+
+    public void setAction(Action action) {
+        this.action = action;
     }
 
     public Product() {
     }
 
-    public Instant getUpdateAt() {
-        return updateAt;
-    }
-
-    public void setUpdateAt(Instant updateAt) {
-        this.updateAt = updateAt;
-    }
-
-    public ESize getSize() {
-        return size;
-    }
-
-    public void setSize(ESize size) {
-        this.size = size;
-    }
-
-    public int getIdProductType() {
-        return idProductType;
-    }
-
-    public void setIdProductType(int idProductType) {
-        this.idProductType = idProductType;
-    }
-
-    public ProductType getProductType() {
-        return productType;
-    }
-
-    public void setProductType(ProductType productType) {
-        this.productType = productType;
-    }
-
-    public Product(long id, String name, String description, BigDecimal price, LocalDate createAt) {
+    public Product(long id, String name, String description, BigDecimal price, LocalDate createAt, int idProductType, ProductType productType, Instant updateAt, int quantity, String img) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.price = price;
         this.createAt = createAt;
+        this.idProductType = idProductType;
+        this.productType = productType;
+        this.updateAt = updateAt;
+        this.quantity = quantity;
+        this.img = img;
     }
-
+    public Product(long id, String name, String description, BigDecimal price, LocalDate createAt, int quantity, String img) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.createAt = createAt;
+        this.quantity = quantity;
+        this.img = img;
+    }
 
     public long getId() {
         return id;
@@ -112,5 +92,45 @@ public class Product {
 
     public void setCreateAt(LocalDate createAt) {
         this.createAt = createAt;
+    }
+
+    public int getIdProductType() {
+        return idProductType;
+    }
+
+    public void setIdProductType(int idProductType) {
+        this.idProductType = idProductType;
+    }
+
+    public ProductType getProductType() {
+        return productType;
+    }
+
+    public void setProductType(ProductType productType) {
+        this.productType = productType;
+    }
+
+    public Instant getUpdateAt() {
+        return updateAt;
+    }
+
+    public void setUpdateAt(Instant updateAt) {
+        this.updateAt = updateAt;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
     }
 }
