@@ -1,6 +1,7 @@
 package controrler;
 
 import appconfig.AppConfig;
+import model.Cart;
 import model.Product;
 import model.User;
 import service.CartService;
@@ -60,5 +61,7 @@ public class CartServlet extends HttpServlet {
         User user = (User) req.getSession().getAttribute("user");
         iCartService.addToCart(idProduct, quantity, user.getId());
 
+        Cart cart = iCartService.getCartById(user.getId());
+        req.setAttribute("cart", cart);
     }
 }

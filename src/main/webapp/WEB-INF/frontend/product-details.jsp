@@ -46,9 +46,10 @@
           <h4>Call of Duty®: Modern Warfare® II</h4>
           <span class="price"><em>$28</em> $22</span>
           <p>LUGX Gaming Template is based on the latest Bootstrap 5 CSS framework. This template is provided by TemplateMo and it is suitable for your gaming shop ecommerce websites. Feel free to use this for any purpose. Thank you.</p>
-          <form id="qty" action="#">
-            <input type="qty" class="form-control" id="1" aria-describedby="quantity" placeholder="1" style="width: 70px;">
-            <button type="submit"><i style="margin-top: 30%" class="fa fa-shopping-bag"></i> ADD TO CART</button>
+          <form id="qty">
+            <%--            <input type="qty" class="form-control" id="1" aria-describedby="quantity" placeholder="1" style="width: 70px;">--%>
+            <input type="number" name="" style="width: 80px;">
+              <a href="/cart?action=add&id=${p.id}"><button type="submit"><i style="margin-top: 30%" class="fa fa-shopping-bag"></i> ADD TO CART</button></a>
           </form>
           <ul>
             <li><span>Game ID:</span> COD MMII</li>
@@ -56,6 +57,23 @@
             <li><span>Multi-tags:</span> <a href="#">War</a>, <a href="#">Battle</a>, <a href="#">Royal</a></li>
           </ul>
         </div>
+<%--        <c:forEach items="${requestScope.cart.getCartItems()}" var="cartItems">--%>
+<%--          <div class="col-lg-6 align-self-center">--%>
+<%--            <h4>${cartItem.getIdProduct()}</h4>--%>
+<%--            <span class="price">${cartItem.price}</span>--%>
+<%--            <p>LUGX Gaming Template is based on the latest Bootstrap 5 CSS framework. This template is provided by TemplateMo and it is suitable for your gaming shop ecommerce websites. Feel free to use this for any purpose. Thank you.</p>--%>
+<%--            <form id="qty" action="#">--%>
+<%--                &lt;%&ndash;            <input type="qty" class="form-control" id="1" aria-describedby="quantity" placeholder="1" style="width: 70px;">&ndash;%&gt;--%>
+<%--              <input type="number" name="" style="width: 80px;" value="${cartItem.quantity}">--%>
+<%--              <button type="submit"><i style="margin-top: 30%" class="fa fa-shopping-bag"></i> ADD TO CART</button>--%>
+<%--            </form>--%>
+<%--            <ul>--%>
+<%--              <li><span>Game ID:</span> COD MMII</li>--%>
+<%--              <li><span>Genre:</span> <a href="#">Action</a>, <a href="#">Team</a>, <a href="#">Single</a></li>--%>
+<%--              <li><span>Multi-tags:</span> <a href="#">War</a>, <a href="#">Battle</a>, <a href="#">Royal</a></li>--%>
+<%--            </ul>--%>
+<%--          </div>--%>
+<%--        </c:forEach>--%>
         <div class="col-lg-12">
           <div class="sep"></div>
         </div>

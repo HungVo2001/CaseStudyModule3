@@ -60,4 +60,11 @@ public class CartItem {
         this.price = price;
         this.quantity = quantity;
     }
+    public CartItem(long idProduct, long idCart, BigDecimal price, int quantity) {
+        this.idProduct = idProduct;
+        this.idCart = idCart;
+        this.price = price;
+        this.quantity = quantity;
+    }
+
 }

@@ -2,13 +2,22 @@ package service;
 
 import dao.DbContext;
 import model.Cart;
+import model.CartItem;
+import model.Product;
 
 import java.sql.*;
 import java.time.LocalDate;
+import java.util.List;
 
 public class CartService extends DbContext implements ICartService{
+    private IProductService productService;
+    private ICartItemService cartItemService;
+    public CartService(){
+        productService = new ProductServiceMysql();
+    }
     @Override
     public Cart getCartById(long idUser) {
+        Cart cart = null;
         Connection connection = getConnection();
         try {
             PreparedStatement ps = connection.prepareStatement("SELECT * FROM cart where id_user = ?");
@@ -21,13 +30,16 @@ public class CartService extends DbContext implements ICartService{
                 double total = rs.getDouble("total");
                 long idUserDB = rs.getLong("id_user");
 
-                Cart cart = new Cart(id,date,total,idUserDB);
+                cart = new Cart(id,date,total,idUserDB);
                 return cart;
             }
+
+            List<CartItem> cartItems = cartItemService.getAllCartItems(cart.getId());
+            cart.setCartItems(cartItems);
         }catch (SQLException e){
             e.printStackTrace();
         }
-        return null;
+        return cart;
     }
 
     @Override
@@ -62,11 +74,20 @@ public class CartService extends DbContext implements ICartService{
 
     @Override
     public void addToCart(int idProduct, int quantity, long idUser) {
+        Product product = productService.findById(idProduct);
         Cart cart = getCartById(idUser);
-        if (cart==null){
+        if (cart == null){
             cart = new Cart(LocalDate.now(),0, idUser);
             cart = createCart(cart);
 
+        }
+        CartItem cartItem = cartItemService.findCartItemById(cart.getId(), idProduct);
+        if (cartItem != null){
+            cartItem.setQuantity(quantity);
+            cartItemService.updateCartItem(cartItem);
+        }else {
+            CartItem cartItemCreate = new CartItem(idProduct,cartItem.getId(),product.getPrice(),quantity);
+            cartItemService.saveCartItem(cartItemCreate);
         }
     }
 }

@@ -10,5 +10,6 @@ public interface ICartItemService {
     CartItem saveCartItem(CartItem cartItem);
     CartItem updateCartItem(CartItem cartItem);
 
-    void deleteCartItem(long idCart);
+    void deleteCartItem(long idCartItem);
+    public CartItem findCartItemById(long cartId, long idProduct);
 }
