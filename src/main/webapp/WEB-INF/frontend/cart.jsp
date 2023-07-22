@@ -127,7 +127,7 @@
                     <span>${cart.total}</span>
                     <%--            <span><fmt:formatNumber value="${cart.total}" pattern="#,##0" />VND</span>--%>
                 </div>
-                <a class="button gotopayment">Go to payment
+                <a href="/payment" class="button gotopayment">Go to payment
                     <div><i class="fa-solid fa-greater-than"></i></div>
                 </a>
                 <span class="choice">or</span>
