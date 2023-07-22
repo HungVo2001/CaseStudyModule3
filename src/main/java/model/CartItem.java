@@ -5,25 +5,20 @@ import java.math.BigDecimal;
 public class CartItem {
     private long id;
     private long idProduct;
-    private Product product;
     private long idCart;
-
+    private Product product;
     private BigDecimal price;
     private int quantity;
 
-
-    public CartItem(long id, long idProduct, long idCart, BigDecimal price, int quantity) {
-        this.id = id;
-        this.idProduct = idProduct;
-        this.idCart = idCart;
-        this.price = price;
-        this.quantity = quantity;
+    public CartItem() {
     }
-    public CartItem(long idProduct, long idCart, BigDecimal price, int quantity) {
-        this.idProduct = idProduct;
-        this.idCart = idCart;
-        this.price = price;
-        this.quantity = quantity;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public Product getProduct() {
@@ -32,21 +27,6 @@ public class CartItem {
 
     public void setProduct(Product product) {
         this.product = product;
-    }
-
-    public CartItem(int idProduct, BigDecimal price, int quantity) {
-        this.idProduct  = idProduct;
-        this.price = price;
-        this.quantity = quantity;
-    }
-
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public long getIdProduct() {
@@ -80,4 +60,24 @@ public class CartItem {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
+
+    public CartItem(long id, long idProduct, long idCart, BigDecimal price, int quantity) {
+        this.id = id;
+        this.idProduct = idProduct;
+        this.idCart = idCart;
+        this.price = price;
+        this.quantity = quantity;
+    }
+    public CartItem(long idProduct, long idCart, BigDecimal price, int quantity) {
+        this.idProduct = idProduct;
+        this.idCart = idCart;
+        this.price = price;
+        this.quantity = quantity;
+    }
+    public CartItem(long idProduct, BigDecimal price, int quantity) {
+        this.idProduct = idProduct;
+        this.price = price;
+        this.quantity = quantity;
+    }
+
 }

@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DbContext {
-    protected static String jdbcURL = "jdbc:mysql://localhost:3306/product_manager2?useSSL=false";
+    protected static String jdbcURL = "jdbc:mysql://localhost:3306/product_manager3?useSSL=false";
     protected static String jdbcUsername = "root";
     protected static String jdbcPassword = "Nqb.151104";
 

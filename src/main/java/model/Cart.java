@@ -10,26 +10,29 @@ public class Cart {
 
     private double total;
 
-    private Long idUser;
+    private long idUser;
 
-    public Long getIdUser() {
+    public long getIdUser() {
         return idUser;
     }
 
-    public void setIdUser(Long idUser) {
-        this.idUser = idUser;
-    }
-
-    public Cart(long id, LocalDate createAt, double total, Long idUser) {
+    public Cart(long id, LocalDate createAt, double total, long idUser) {
         this.id = id;
         this.createAt = createAt;
         this.total = total;
         this.idUser = idUser;
     }
-    public Cart(LocalDate createAt, double total, Long idUser) {
+    public Cart(LocalDate createAt, double total, long idUser) {
         this.createAt = createAt;
         this.total = total;
         this.idUser = idUser;
+    }
+
+    public void setIdUser(long idUser) {
+        this.idUser = idUser;
+    }
+
+    public Cart() {
     }
 
     public Cart(long id, LocalDate createAt, List<CartItem> cartItems, double total) {
@@ -38,10 +41,17 @@ public class Cart {
         this.cartItems = cartItems;
         this.total = total;
     }
-
     public Cart(long id, LocalDate createAt, double total) {
         this.id = id;
         this.createAt = createAt;
+        this.total = total;
+    }
+
+    public double getTotal() {
+        return total;
+    }
+
+    public void setTotal(double total) {
         this.total = total;
     }
 
@@ -68,12 +78,13 @@ public class Cart {
     public void setCartItems(List<CartItem> cartItems) {
         this.cartItems = cartItems;
     }
-
-    public double getTotal() {
-        return total;
-    }
-
-    public void setTotal(double total) {
+    public void updateTotal() {
+        double total = 0;
+        if (cartItems != null) {
+            for (int i = 0; i < cartItems.size(); i++) {
+                total += cartItems.get(i).getQuantity() * cartItems.get(i).getPrice().intValue();
+            }
+        }
         this.total = total;
     }
 }

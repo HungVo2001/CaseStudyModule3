@@ -1,8 +1,12 @@
 package controrler;
 
-
 import appconfig.AppConfig;
+import model.Bill;
+import model.Cart;
 import model.Product;
+import model.User;
+import service.BillService;
+import service.IBillService;
 import service.IProductService;
 import service.ProductServiceMysql;
 
@@ -15,22 +19,24 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "Product_detailServlet", urlPatterns = "/product")
-public class Product_detailServlet extends HttpServlet {
-    private IProductService productService;
-
+@WebServlet(name = "PaymentServlet", urlPatterns = "/payment")
+public class PaymentServlet extends HttpServlet {
+    IBillService billService;
     @Override
     public void init() throws ServletException {
-        productService = new ProductServiceMysql();
+        billService = new BillService();
     }
-
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        long id = Long.parseLong(req.getParameter("id"));
-        Product product = productService.findById(id);
-        req.setAttribute("p", product);
-        RequestDispatcher requestDispatcher = req.getRequestDispatcher(AppConfig.VIEW_FRONTEND + "product-details.jsp");
-        requestDispatcher.forward(req, resp);
+        User user = (User) req.getSession().getAttribute("user");
+        if (user == null){
+            resp.sendRedirect("/login");
+            return;
+        }
 
+        Bill payment = billService.findPayment(user.getId());
+        req.setAttribute("payments", payment);
+        req.getRequestDispatcher("payment.jsp").forward(req,resp);
     }
+
 }

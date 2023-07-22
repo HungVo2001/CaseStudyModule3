@@ -1,156 +1,197 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <html lang="en">
 
 <head>
 
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <title>Lugx Gaming Template - Contact Page</title>
-  <link rel="shortcut icon" type="image/x-icon" href="\frontend\assets\img\favicon.png">
+    <title>Lugx Gaming Template - Contact Page</title>
 
-  <!-- all css here -->
-  <link rel="stylesheet" href="\frontend\assets\css\bootstrap.min.css">
-  <link rel="stylesheet" href="\frontend\assets\css\plugin.css">
-  <link rel="stylesheet" href="\frontend\assets\css\bundle.css">
-  <link rel="stylesheet" href="\frontend\assets\css\style.css">
-  <link rel="stylesheet" href="\frontend\assets\css\responsive.css">
+    <jsp:include page="/WEB-INF/layout/head_css.jsp"></jsp:include>
 
-  <jsp:include page="/WEB-INF/layout/head_css.jsp"></jsp:include>
-  <style>
-    .cart{
-      padding: 20px;
-    }
-    table{
-      color: white;
-    }
-  </style>
 
 </head>
 
 <body>
 
-  <!-- ***** Preloader Start ***** -->
+<!-- ***** Preloader Start ***** -->
 <%--<jsp:include page="layout/preloader.jsp"></jsp:include>--%>
-  <!-- ***** Preloader End ***** -->
+<!-- ***** Preloader End ***** -->
 
-  <!-- ***** Header Area Start ***** -->
-  <jsp:include page="/WEB-INF/layout/header_js.jsp"></jsp:include>
-  <!-- ***** Header Area End ***** -->
+<!-- ***** Header Area Start ***** -->
+<jsp:include page="/WEB-INF/layout/header_js.jsp"></jsp:include>
+<!-- ***** Header Area End ***** -->
 
-  <div class="page-heading header-text">
+<div class="page-heading header-text">
     <div class="container">
-      <div class="row">
-        <div class="col-lg-12">
-          <h3>CART</h3>
-          <span class="breadcrumb"><a href="/homes">Home</a> > CART</span>
+        <div class="row">
+            <div class="col-lg-12">
+                <h3>Contact Us</h3>
+                <span class="breadcrumb"><a href="#">Home</a> > Contact Us</span>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
+</div>
 
-  <div class="cart-page section">
+<div class="cart-page section">
     <div id="cartpage-app" class="cartpage-container">
-      <div class="cartpage-left">
-        <div class="cartpage-section" data-select2-id="select2-data-13-9tyk">
-          <h2>Cart</h2>
-          <div class="shopping_cart_area">
-            <form action="#">
-              <div class="row">
-                <div class="col-12">
-                  <div class="table_desc">
-                    <div class="cart_page table-responsive">
-                      <table>
-                        <thead>
-                        <tr>
-                          <th class="cart product_remove">Delete</th>
-                          <th class="cart product_thumb">Image</th>
-                          <th class="cart product_name">Product</th>
-                          <th class="cart product-price">Price</th>
-                          <th class="cart product_quantity">Quantity</th>
-                          <th class="cart product_total">Total</th>
-                        </tr>
-                        </thead>
-                        <tbody>
+        <div class="cartpage-left">
+            <div class="cartpage-section" data-select2-id="select2-data-13-9tyk">
+                <h2>Cart</h2>
+                <c:forEach items="${requestScope.cart.getCartItems()}" var="cartItem">
+                    <div class="cart-listing" data-select2-id="select2-data-12-kkm5">
+                        <div class="cart-item" data-select2-id="select2-data-11-d37n">
+                            <div class="item-container" data-select2-id="select2-data-10-xtlc">
+                                <a href="../../dashboard/asset/assets/images/single-game.jpg" class="cover">
+                                    <picture>
+                                        <img alt="Six Days in fallu" src="${cartItem.product.img}" loading="lazy">
+                                    </picture>
+                                </a>
+                                <div class="information">
+                                    <div class="name">
+                                        <div class="platform platform-steam">
+                                            <div> <img class="icon-steam" src="../../dashboard/asset/assets/images/steam.png" alt=""></div>
+                                        </div>
+                                        <span title="Six Days in Fallujah" class="title">${cartItem.product.name}</span>
+                                    </div>
+                                    <div class="type">Steam</div>
+                                    <div class="actions">
+                                        <a class="deleteItem">
+                                            <a href="javascript:void(0)" onclick="handleDeleteCartItem(${cartItem.getId()})">
+                                                <i class="delete fa-regular fa-trash-can"></i>
+                                            </a>
+                                        </a>
+                                        <a class="moveToWishlist">Move to Wishlist</a>
+                                    </div>
+                                </div>
+                                <div class="price-container" data-select2-id="select2-data-9-7f0z">
+                                    <div class="price">${cartItem.price * cartItem.quantity}</div>
+                                    <input onchange="handleQuantityChange(this,${cartItem.product.id})"  min="1" max="100" type="number" name="" style="width: 80px;" value="${cartItem.quantity}">
+                                        <%--                  <select class="wide selectable2 manual select2-hidden-accessible"--%>
+                                        <%--                    data-select2-id="select2-data-1-mi7w" tabindex="-1" aria-hidden="true">--%>
+                                        <%--                    <option value="0" disabled="disabled">0</option>--%>
+                                        <%--                    <option value="1" data-select2-id="select2-data-3-bt80">1</option>--%>
+                                        <%--                    <option value="2">2</option>--%>
+                                        <%--                    <option value="3">3</option>--%>
+                                        <%--                    <option value="4">4</option>--%>
+                                        <%--                    <option value="5">5</option>--%>
+                                        <%--                    <option value="6">6</option>--%>
+                                        <%--                    <option value="7">7</option>--%>
+                                        <%--                    <option value="8">8</option>--%>
+                                        <%--                    <option value="9">9</option>--%>
+                                        <%--                    <option value="10">10</option>--%>
+                                        <%--                  </select>--%>
 
-                        <c:forEach items="${requestScope.cart.getCartItems()}" var="cartItem">
-                          <tr>
-                            <td class="cart product_remove"><a href="/cart?action=delete&id=${cartItem.id}"><i class="fa fa-trash-o"></i>xoa</a></td>
-                            <td class="cart product_thumb"><img style="width: 100px;height: 100px" src="${cartItem.product.img}"></td>
-                            <td class="cart product_name">${cartItem.product.name}</td>
-                            <td class="cart product-price">${cartItem.price}</td>
-                            <td class="cart product_quantity"><input  onchange="handleQuantityChange(this, ${cartItem.product.id})" min="0" max="100" type="number" value="${cartItem.quantity}"></td>
-                            <td class="cart product_total">${cartItem.price*cartItem.quantity} VND</td>
-                          </tr>
-                        </c:forEach>
-
-
-                        </tbody>
-                      </table>
+                                    <span class="select2 select2-container select2-container--default" dir="ltr"
+                                          data-select2-id="select2-data-2-v91o">
+                    <span class="selection">
+                      <span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true"
+                            aria-expanded="false" tabindex="0" aria-disabled="false"
+                            aria-labelledby="select2-v6kx-container" aria-controls="select2-v6kx-container">
+<%--                        <span class="select2-selection__rendered" id="select2-v6kx-container" role="textbox"--%>
+<%--                          aria-readonly="true" title="1">1</span>--%>
+<%--                        <span class="select2-selection__arrow" role="presentation">--%>
+                          <b role="presentation"></b>
+                        </span>
+                      </span>
+                    </span>
+                                    <span class="dropdown-wrapper" aria-hidden="true"></span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                  </div>
+                </c:forEach>
+            </div>
+            <div class="separator"></div>
+        </div>
+        <div class="cartpage-right">
+            <h2>Summary</h2>
+            <div class="cart-summary">
+                <div class="summary-row">
+                    <span>Official price</span>
+                    <span>${cartItem.product.price}</span>
+                    <%--            <span><fmt:formatNumber value="${cartItem.product.price}" pattern="#,##0" />VND</span>--%>
+
                 </div>
-              </div>
-            </form>
-          </div>
+                <div class="summary-row">
+                    <span>Discount</span>
+                    <span>-10€</span>
+                </div>
+                <div class="summary-row">
+                    <span>Subtotal</span>
+                    <span>${cart.total}</span>
+                    <%--            <span><fmt:formatNumber value="${cart.total}" pattern="#,##0" />VND</span>--%>
+                </div>
+                <a class="button gotopayment">Go to payment
+                    <div><i class="fa-solid fa-greater-than"></i></div>
+                </a>
+                <span class="choice">or</span>
+                <a href="/homes" class="back">
+                    <div><i class="fa-solid fa-less-than"></i>Continue shopping</div>
+                </a>
+            </div>
         </div>
-        <div class="separator"></div>
-      </div>
-      <div class="cartpage-right">
-        <h2>Summary</h2>
-        <div class="cart-summary">
-          <div class="price_indiv d-flex justify-content-between" style="padding-bottom: 30px">
-            <p>Total</p>
-            <p><span id="product_total_amt">${String.format("%.0f",cartItem.total)}</span> VNĐ</p>
-          </div>
-          <a class="button gotopayment">Go to payment
-            <div><i class="fa-solid fa-greater-than"></i></div>
-          </a>
-          <span class="choice">or</span>
-          <a href="/shop" class="back">
-            <div><i class="fa-solid fa-less-than"></i>Continue shopping</div>
-          </a>
-        </div>
-      </div>
+        <%--      <c:forEach items="${requestScope.cart.getCartItems()}" var="cartItems">--%>
+        <%--        <div class="cartpage-right">--%>
+        <%--          <h2>${cartItem.getIdProduct()}</h2>--%>
+        <%--          <div class="cart-summary">--%>
+        <%--            <div class="summary-row">--%>
+        <%--              <span>${cartItem.price}</span>--%>
+        <%--              <span>38.99€</span>--%>
+        <%--            </div>--%>
+        <%--            <div class="summary-row">--%>
+        <%--              <span>Discount</span>--%>
+        <%--              <span>-10€</span>--%>
+        <%--            </div>--%>
+        <%--            <div class="summary-row">--%>
+        <%--              <span>Subtotal</span>--%>
+        <%--              <span>28.99€</span>--%>
+        <%--            </div>--%>
+        <%--            <a class="button gotopayment">Go to payment--%>
+        <%--              <div><i class="fa-solid fa-greater-than"></i></div>--%>
+        <%--            </a>--%>
+        <%--            <span class="choice">or</span>--%>
+        <%--            <a href="/" class="back">--%>
+        <%--              <div><i class="fa-solid fa-less-than"></i>Continue shopping</div>--%>
+        <%--            </a>--%>
+        <%--          </div>--%>
+        <%--        </div>--%>
+        <%--      </c:forEach>--%>
+    </div>
+</div>
+
+<!-- <footer>
+  <div class="container">
+    <div class="col-lg-12">
+      <p>Copyright © 2048 LUGX Gaming Company. All rights reserved. &nbsp;&nbsp; <a rel="nofollow" href="https://templatemo.com" target="_blank">Design: TemplateMo</a></p>
     </div>
   </div>
 
-  <!-- <footer>
-    <div class="container">
-      <div class="col-lg-12">
-        <p>Copyright © 2048 LUGX Gaming Company. All rights reserved. &nbsp;&nbsp; <a rel="nofollow" href="https://templatemo.com" target="_blank">Design: TemplateMo</a></p>
-      </div>
-    </div>
-    
-  </footer> -->
+</footer> -->
 
-  <div class="separator wide"></div>
+<div class="separator wide"></div>
 
-  <jsp:include page="/WEB-INF/layout/footer_container.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/layout/footer_container.jsp"></jsp:include>
 
-  <jsp:include page="/WEB-INF/layout/java_script.jsp"></jsp:include>
-
-  <script>
+<jsp:include page="/WEB-INF/layout/java_script.jsp"></jsp:include>
+<script>
     function handleQuantityChange(eQuantity, idProduct){
-      let url = `/cart?action=update&id=\${idProduct}&quantity=\${eQuantity.value}`;
+        let url = `/cart?action=update&id=\${idProduct}&quantity=\${eQuantity.value}`;
+        window.location.assign(url);
+    }
+</script>
+<script>
+    function handleDeleteCartItem(id) {
+        let url = `/cart?action=delete&id=\${id}`;
+        window.location.assign(url);
+    }
+</script>
 
-      window.location.assign(url);
-    }
-    function formatPrice(price) {
-      return price.toLocaleString('vi-VN', {style: 'currency', currency: 'VND'});
-    }
-    function deleteCartItemIfQuantityEqualZero(idProduct) {
-
-    }
-  </script>
-  <script src="\frontend\assets\js\vendor\modernizr-2.8.3.min.js"></script>
-  <script src="\frontend\assets\js\vendor\jquery-1.12.0.min.js"></script>
-  <script src="\frontend\assets\js\popper.js"></script>
-  <script src="\frontend\assets\js\bootstrap.min.js"></script>
-  <script src="\frontend\assets\js\ajax-mail.js"></script>
-  <script src="\frontend\assets\js\plugins.js"></script>
-  <script src="\frontend\assets\js\main.js"></script>
 </body>
 
 </html>

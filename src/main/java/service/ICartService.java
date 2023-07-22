@@ -1,10 +1,8 @@
 package service;
 
-
 import model.Cart;
 
 public interface ICartService {
-
     Cart getCartById(long idUser);
     Cart createCart(Cart cart);
 
@@ -12,5 +10,9 @@ public interface ICartService {
 
     void addToCart(int idProduct, int quantity, long id);
 
-    Cart updateCartInfo(long id, long idProduct, int quantity);
+
+    Cart updateCartInfo(long idUser, long idProduct, int quantity);
+
+
+
 }
